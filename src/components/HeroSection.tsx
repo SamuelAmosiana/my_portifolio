@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import imgAdobeExpressFile31 from "../assets/7ba16f5335969b66c314f7955ee4897ab548acd6.png";
+import profileImage from "../assets/ndine_coder.jpg";
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -83,7 +83,7 @@ export function HeroSection() {
         >
           <div
             className="w-full max-w-[500px] lg:max-w-none h-[400px] lg:h-[700px] bg-cover bg-center bg-no-repeat rounded-2xl shadow-2xl"
-            style={{ backgroundImage: `url('${imgAdobeExpressFile31}')` }}
+            style={{ backgroundImage: `url('${profileImage}')` }}
           />
         </motion.div>
       </div>
