@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import profileImage from "../assets/ndine_coder.jpg";
+import { Database, Terminal, Code2, Cloud, GitBranch } from "lucide-react";
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -8,6 +9,15 @@ export function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Tech icons data with positioning
+  const techIcons = [
+    { icon: Database, position: 'top', label: 'Database' },
+    { icon: Terminal, position: 'right', label: 'Terminal' },
+    { icon: Code2, position: 'bottom', label: 'Development' },
+    { icon: Cloud, position: 'left', label: 'Cloud' },
+    { icon: GitBranch, position: 'top-right', label: 'Git' },
+  ];
 
   return (
     <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden">
@@ -46,7 +56,7 @@ export function HeroSection() {
             <h2 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9]">
               Hi, I'm Samuel Sianamate
             </h2>
-            <h1 className="font-['Poppins:Bold',_sans-serif] text-[50px] lg:text-[96px] leading-[1.1] lg:leading-[0.9] text-[#f8f7f9]">
+            <h1 className="font-['Poppins:Bold',_sans-serif] text-[30px] lg:text-[96px] leading-[1.1] lg:leading-[0.9] text-[#f8f7f9]">
               SOFTWARE<br />ENGINEER
             </h1>
             <p className="font-['Poppins:Regular',_sans-serif] text-[20px] text-[#f8f7f9]/60 max-w-lg mx-auto lg:mx-0">
@@ -74,17 +84,103 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Right content - Profile image */}
+        {/* Right content - Profile image with tech icons */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative flex justify-center lg:block"
+          className="flex justify-center lg:block"
         >
-          <div
-            className="w-full max-w-[500px] lg:max-w-none h-[400px] lg:h-[700px] bg-cover bg-center bg-no-repeat rounded-2xl shadow-2xl"
-            style={{ backgroundImage: `url('${profileImage}')` }}
-          />
+          {/* Main image container */}
+          <div className="relative">
+            {/* Floating animation wrapper */}
+            <motion.div
+              animate={{
+                y: [0, -15, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatType: "reverse",
+              }}
+              className="relative z-10"
+            >
+              {/* Circular profile image - PERFECT CIRCLE with equal dimensions */}
+              <div
+                style={{ 
+                  width: '320px',
+                  height: '320px',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                  flexShrink: '0',
+                  WebkitFlexShrink: '0',
+                }}
+                className="relative z-10"
+              >
+                <img
+                  src={profileImage}
+                  alt="Samuel Sianamate"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                  className="w-full h-full"
+                />
+              </div>
+            </motion.div>
+
+            {/* Orbiting tech icons */}
+            <div className="absolute inset-0 z-20">
+              {techIcons.map((tech, index) => {
+                const positionStyles: Record<string, string> = {
+                  'top': 'absolute -top-4 left-1/2 transform -translate-x-1/2',
+                  'top-right': 'absolute top-8 right-0 sm:right-4',
+                  'right': 'absolute top-1/2 -right-2 sm:-right-4 transform -translate-y-1/2',
+                  'bottom': 'absolute -bottom-4 left-1/2 transform -translate-x-1/2',
+                  'left': 'absolute top-1/2 -left-2 sm:-left-4 transform -translate-y-1/2',
+                };
+
+                const animations: Record<string, { y?: number[]; x?: number[]; duration: number; delay: number }> = {
+                  'top': { y: [0, -8, 0], duration: 3, delay: 0.5 },
+                  'top-right': { y: [0, -6, 0], x: [0, 4, 0], duration: 3.5, delay: 1 },
+                  'right': { x: [0, 8, 0], duration: 3, delay: 0.2 },
+                  'bottom': { y: [0, 8, 0], duration: 3.2, delay: 0.7 },
+                  'left': { x: [0, -8, 0], duration: 3.3, delay: 0.3 },
+                };
+
+                const animation = animations[tech.position];
+
+                return (
+                  <motion.div
+                    key={index}
+                    className={positionStyles[tech.position]}
+                    animate={{
+                      ...(animation.y && { y: animation.y }),
+                      ...(animation.x && { x: animation.x }),
+                    }}
+                    transition={{
+                      duration: animation.duration,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      repeatType: "reverse",
+                      delay: animation.delay,
+                    }}
+                  >
+                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-white/20">
+                      <tech.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#f8f7f9]" strokeWidth={2.5} />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Decorative glow behind image */}
+            <div className="absolute inset-0 rounded-full bg-[#f8f7f9]/20 blur-3xl -z-10 scale-110" />
+          </div>
         </motion.div>
       </div>
     </section>

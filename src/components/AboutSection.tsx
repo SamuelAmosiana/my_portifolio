@@ -20,7 +20,7 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
           >
-            I'm a dynamic and results-driven Software Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, and modern cloud infrastructure.
+            I'm a dynamic and results-driven Software Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
           </motion.p>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -47,10 +47,10 @@ export function AboutSection() {
             className="max-w-4xl"
           >
             <h4 className="font-['Poppins:ExtraBold',_sans-serif] text-[20px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-2">
-              National Institute of Technology Puducherry
+              Chalimbana University
             </h4>
             <p className="font-['Poppins:Medium',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.5]">
-              Bachelor of Technology in Electronics and Communications. Equipped with a solid foundation in technical skills, algorithms, and problem-solving methodologies.
+              Bachelor of Information and Communication Technology with Education.
             </p>
           </motion.div>
         </div>
