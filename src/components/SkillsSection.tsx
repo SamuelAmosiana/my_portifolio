@@ -2,22 +2,27 @@ import { motion } from "motion/react";
 
 const skills = {
   "Programming Languages": [
-    { name: "JavaScript", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "Python", level: 80 },
+    { name: "PHP", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "TypeScript", level: 80 },
+    { name: "Java", level: 75 },
     { name: "SQL", level: 75 },
+    { name: "Python", level: 70 },
+    
   ],
   "Frameworks & Libraries": [
-    { name: "React", level: 90 },
-    { name: "Next.js", level: 85 },
+    { name: "Laravel", level: 90 },
+    { name: "React", level: 85 },
+    { name: "Bootstrap", level: 85 },
     { name: "Tailwind CSS", level: 95 },
     { name: "Node.js", level: 80 },
   ],
   "Tools & DevOps": [
     { name: "Git", level: 85 },
+    { name: "Figma", level: 80 },
     { name: "Docker", level: 70 },
     { name: "AWS", level: 65 },
-    { name: "Figma", level: 80 },
+    
   ],
 };
 
