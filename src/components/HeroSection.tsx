@@ -133,7 +133,7 @@ export function HeroSection() {
                   height: '100%',
                   borderRadius: '50%',
                   overflow: 'hidden',
-                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(255, 215, 0, 0.8)',
                   flexShrink: '0',
                   WebkitFlexShrink: '0',
                 }}
@@ -187,8 +187,8 @@ export function HeroSection() {
                 delay: 0,
               }}
             >
-              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
-                <Database className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex items-center justify-center w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] rounded-full bg-yellow-400/10 backdrop-blur-sm border-4 border-[#FFD700] shadow-[0_8px_20px_rgba(255,215,0,0.15)] z-20">
+                <Database className="w-7 h-7 sm:w-8 sm:h-8 text-[#FFD700]" strokeWidth={2} />
               </div>
             </motion.div>
 
@@ -209,8 +209,8 @@ export function HeroSection() {
                 delay: 0.4,
               }}
             >
-              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
-                <Terminal className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex items-center justify-center w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] rounded-full bg-yellow-400/10 backdrop-blur-sm border-4 border-[#FFD700] shadow-[0_8px_20px_rgba(255,215,0,0.15)] z-20">
+                <Terminal className="w-7 h-7 sm:w-8 sm:h-8 text-[#FFD700]" strokeWidth={2} />
               </div>
             </motion.div>
 
@@ -218,7 +218,7 @@ export function HeroSection() {
             <motion.div
               className="absolute"
               style={{
-                bottom: '10%',
+                bottom: '90%',
                 right: '15%',
               }}
               animate={{
@@ -231,8 +231,8 @@ export function HeroSection() {
                 delay: 0.8,
               }}
             >
-              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
-                <Code2 className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex items-center justify-center w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] rounded-full bg-yellow-400/10 backdrop-blur-sm border-4 border-[#FFD700] shadow-[0_8px_20px_rgba(255,215,0,0.15)] z-20">
+                <Code2 className="w-7 h-7 sm:w-8 sm:h-8 text-[#FFD700]" strokeWidth={2} />
               </div>
             </motion.div>
 
@@ -240,8 +240,9 @@ export function HeroSection() {
             <motion.div
               className="absolute"
               style={{
-                bottom: '10%',
-                left: '15%',
+                bottom: '7%',
+                left: '5%',
+                
               }}
               animate={{
                 y: [0, -6, 0],
@@ -253,8 +254,8 @@ export function HeroSection() {
                 delay: 1.2,
               }}
             >
-              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
-                <Cloud className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex items-center justify-center w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] rounded-full bg-yellow-400/10 backdrop-blur-sm border-4 border-[#FFD700] shadow-[0_8px_20px_rgba(255,215,0,0.15)] z-20">
+                <Cloud className="w-7 h-7 sm:w-8 sm:h-8 text-[#FFD700]" strokeWidth={2} />
               </div>
             </motion.div>
 
@@ -275,8 +276,8 @@ export function HeroSection() {
                 delay: 1.6,
               }}
             >
-              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
-                <GitBranch className="w-6 h-6 text-[#FFD700]" />
+              <div className="flex items-center justify-center w-[60px] h-[60px] sm:w-[65px] sm:h-[65px] rounded-full bg-yellow-400/10 backdrop-blur-sm border-4 border-[#FFD700] shadow-[0_8px_20px_rgba(255,215,0,0.15)] z-20">
+                <GitBranch className="w-7 h-7 sm:w-8 sm:h-8 text-[#FFD700]" strokeWidth={2} />
               </div>
             </motion.div>
           </div>
