@@ -133,15 +133,31 @@ export function HeroSection() {
               </div>
             </motion.div>
 
+            {/* Decorative circular glow matching image radius */}
+            <div 
+              style={{
+                width: '320px',
+                height: '320px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(248, 247, 249, 0.2) 0%, transparent 70%)',
+                filter: 'blur(40px)',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 1,
+              }}
+            />
+
             {/* Orbiting tech icons */}
             <div className="absolute inset-0 z-20">
               {techIcons.map((tech, index) => {
                 const positionStyles: Record<string, string> = {
-                  'top': 'absolute -top-4 left-1/2 transform -translate-x-1/2',
-                  'top-right': 'absolute top-8 right-0 sm:right-4',
-                  'right': 'absolute top-1/2 -right-2 sm:-right-4 transform -translate-y-1/2',
-                  'bottom': 'absolute -bottom-4 left-1/2 transform -translate-x-1/2',
-                  'left': 'absolute top-1/2 -left-2 sm:-left-4 transform -translate-y-1/2',
+                  'top': 'absolute -top-6 left-1/2 transform -translate-x-1/2',
+                  'top-right': 'absolute top-2 right-2',
+                  'right': 'absolute top-1/2 -right-6 transform -translate-y-1/2',
+                  'bottom': 'absolute -bottom-6 left-1/2 transform -translate-x-1/2',
+                  'left': 'absolute top-1/2 -left-6 transform -translate-y-1/2',
                 };
 
                 const animations: Record<string, { y?: number[]; x?: number[]; duration: number; delay: number }> = {
@@ -177,9 +193,6 @@ export function HeroSection() {
                 );
               })}
             </div>
-
-            {/* Decorative glow behind image */}
-            <div className="absolute inset-0 rounded-full bg-[#f8f7f9]/20 blur-3xl -z-10 scale-110" />
           </div>
         </motion.div>
       </div>
