@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import profileImage from "../assets/ndine_coder.jpg";
 import { Database, Terminal, Code2, Cloud, GitBranch } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -10,13 +11,29 @@ export function HeroSection() {
     }
   };
 
-  // Tech icons data with positioning
+  // Responsive state for orbital radius
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Orbital radius based on screen size
+  const orbitalRadius = isMobile ? 120 : 160;
+  const iconSize = isMobile ? 32 : 40;
+
+  // Tech icons data with calculated orbital positions
   const techIcons = [
-    { icon: Database, position: 'top', label: 'Database' },
-    { icon: Terminal, position: 'right', label: 'Terminal' },
-    { icon: Code2, position: 'bottom', label: 'Development' },
-    { icon: Cloud, position: 'left', label: 'Cloud' },
-    { icon: GitBranch, position: 'top-right', label: 'Git' },
+    { icon: Database, label: 'Database', angle: 0 },
+    { icon: GitBranch, label: 'Git', angle: 72 },
+    { icon: Terminal, label: 'Terminal', angle: 144 },
+    { icon: Code2, label: 'Development', angle: 216 },
+    { icon: Cloud, label: 'Cloud', angle: 288 },
   ];
 
   return (
@@ -44,7 +61,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-20 lg:pt-0">
+      <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-20 lg:pt-0">
         {/* Left content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -89,11 +106,11 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center lg:block"
+          className="flex justify-center lg:justify-end"
         >
           {/* Main image container */}
           <div className="relative">
-            {/* Floating animation wrapper */}
+            {/* Circular profile image - PERFECT CIRCLE with equal dimensions */}
             <motion.div
               animate={{
                 y: [0, -15, 0],
@@ -105,12 +122,15 @@ export function HeroSection() {
                 repeatType: "reverse",
               }}
               className="relative z-10"
+              style={{
+                width: isMobile ? '240px' : '320px',
+                height: isMobile ? '240px' : '320px',
+              }}
             >
-              {/* Circular profile image - PERFECT CIRCLE with equal dimensions */}
               <div
                 style={{ 
-                  width: '320px',
-                  height: '320px',
+                  width: '100%',
+                  height: '100%',
                   borderRadius: '50%',
                   overflow: 'hidden',
                   boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
@@ -136,8 +156,8 @@ export function HeroSection() {
             {/* Decorative circular glow matching image radius */}
             <div 
               style={{
-                width: '320px',
-                height: '320px',
+                width: isMobile ? '240px' : '320px',
+                height: isMobile ? '240px' : '320px',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle, rgba(248, 247, 249, 0.2) 0%, transparent 70%)',
                 filter: 'blur(40px)',
@@ -149,50 +169,116 @@ export function HeroSection() {
               }}
             />
 
-            {/* Orbiting tech icons */}
-            <div className="absolute inset-0 z-20">
-              {techIcons.map((tech, index) => {
-                const positionStyles: Record<string, string> = {
-                  'top': 'absolute -top-6 left-1/2 transform -translate-x-1/2',
-                  'top-right': 'absolute top-2 right-2',
-                  'right': 'absolute top-1/2 -right-6 transform -translate-y-1/2',
-                  'bottom': 'absolute -bottom-6 left-1/2 transform -translate-x-1/2',
-                  'left': 'absolute top-1/2 -left-6 transform -translate-y-1/2',
-                };
+            {/* Tech Icon 1: Database - Top Center */}
+            <motion.div
+              className="absolute"
+              style={{
+                top: '100%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+              }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0,
+              }}
+            >
+              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
+                <Database className="w-6 h-6 text-[#FFD700]" />
+              </div>
+            </motion.div>
 
-                const animations: Record<string, { y?: number[]; x?: number[]; duration: number; delay: number }> = {
-                  'top': { y: [0, -8, 0], duration: 3, delay: 0.5 },
-                  'top-right': { y: [0, -6, 0], x: [0, 4, 0], duration: 3.5, delay: 1 },
-                  'right': { x: [0, 8, 0], duration: 3, delay: 0.2 },
-                  'bottom': { y: [0, 8, 0], duration: 3.2, delay: 0.7 },
-                  'left': { x: [0, -8, 0], duration: 3.3, delay: 0.3 },
-                };
+            {/* Tech Icon 2: Terminal - Right Top */}
+            <motion.div
+              className="absolute"
+              style={{
+                top: '30%',
+                right: '-8%',
+              }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.4,
+              }}
+            >
+              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
+                <Terminal className="w-6 h-6 text-[#FFD700]" />
+              </div>
+            </motion.div>
 
-                const animation = animations[tech.position];
+            {/* Tech Icon 3: Code2 - Bottom Right */}
+            <motion.div
+              className="absolute"
+              style={{
+                bottom: '10%',
+                right: '15%',
+              }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.8,
+              }}
+            >
+              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
+                <Code2 className="w-6 h-6 text-[#FFD700]" />
+              </div>
+            </motion.div>
 
-                return (
-                  <motion.div
-                    key={index}
-                    className={positionStyles[tech.position]}
-                    animate={{
-                      ...(animation.y && { y: animation.y }),
-                      ...(animation.x && { x: animation.x }),
-                    }}
-                    transition={{
-                      duration: animation.duration,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      repeatType: "reverse",
-                      delay: animation.delay,
-                    }}
-                  >
-                    <div className="bg-white/10 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-white/20">
-                      <tech.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#f8f7f9]" strokeWidth={2.5} />
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+            {/* Tech Icon 4: Cloud - Bottom Left */}
+            <motion.div
+              className="absolute"
+              style={{
+                bottom: '10%',
+                left: '15%',
+              }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.2,
+              }}
+            >
+              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
+                <Cloud className="w-6 h-6 text-[#FFD700]" />
+              </div>
+            </motion.div>
+
+            {/* Tech Icon 5: GitBranch - Left Top */}
+            <motion.div
+              className="absolute"
+              style={{
+                top: '30%',
+                left: '-8%',
+              }}
+              animate={{
+                y: [0, -6, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1.6,
+              }}
+            >
+              <div className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#1f1f1f] border-2 border-[#FFD700] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.2)] z-20">
+                <GitBranch className="w-6 h-6 text-[#FFD700]" />
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
