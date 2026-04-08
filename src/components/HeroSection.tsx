@@ -2,14 +2,10 @@ import { motion } from "motion/react";
 import profileImage from "../assets/ndine_coder.jpg";
 import { Database, Terminal, Code2, Cloud, GitBranch } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function HeroSection() {
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const navigate = useNavigate();
 
   // Responsive state for orbital radius
   const [isMobile, setIsMobile] = useState(false);
@@ -83,7 +79,7 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <button
-              onClick={scrollToProjects}
+              onClick={() => navigate('/projects')}
               className="group border-2 border-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9] hover:text-[#1f1f1f]"
             >
               <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300">
@@ -91,7 +87,7 @@ export function HeroSection() {
               </span>
             </button>
             <button
-              onClick={() => document.getElementById('feedback')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => navigate('/contact')}
               className="group bg-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9]/90 text-[#1f1f1f]"
             >
               <span className="font-['Poppins:Bold',_sans-serif] text-[18px]">
@@ -128,7 +124,7 @@ export function HeroSection() {
               }}
             >
               <div
-                style={{ 
+                style={{
                   width: '100%',
                   height: '100%',
                   borderRadius: '50%',
@@ -154,7 +150,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Decorative circular glow matching image radius */}
-            <div 
+            <div
               style={{
                 width: isMobile ? '240px' : '320px',
                 height: isMobile ? '240px' : '320px',
@@ -242,7 +238,6 @@ export function HeroSection() {
               style={{
                 bottom: '7%',
                 left: '5%',
-                
               }}
               animate={{
                 y: [0, -6, 0],

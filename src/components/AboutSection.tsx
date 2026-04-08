@@ -66,19 +66,24 @@ export function AboutSection() {
           </motion.h3>
           <div className="space-y-12">
             <ExperienceItem
-              title="SOFTWARE ENGINEER"
-              period="2024 — current"
-              description="Leading development of core product features using React and Node.js. Collaborating with cross-functional teams to design scalable architecture and improve system performance by 40%."
+              title="ICT Officer (Senior Engineer) - Lusaka South University College"
+              period="January, 2026 — Present"
+              description="In this role, I manage and optimize IT infrastructure, ensuring system reliability, security, and scalability. I also lead troubleshooting, implement system upgrades, and support backend services that drive organizational efficiency."
             />
             <ExperienceItem
-              title="PRODUCT ENGINEER"
-              period="2022 — 2024"
-              description="Developed and maintained client-facing applications. Implemented CI/CD pipelines and automated testing, reducing deployment time by 60%. Mentored junior developers and conducted code reviews."
+              title="Junior Developer - Lusaka South University College"
+              period="January, 2025 — December, 2025"
+              description="In this role, I designed and developed responsive web applications, collaborate on backend systems, and contribute to building scalable, user-focused software solutions while continuously improving my development skills."
             />
             <ExperienceItem
-              title="JUNIOR DEVELOPER"
-              period="2021 — 2022"
-              description="Assisted in the development of internal tools and dashboards. Gained proficiency in frontend technologies and API integration."
+              title="Student Teacher - Siavonga STEM Secondary School"
+              period="January, 2024 — April, 2024"
+              description="In this role, I delivered engaging lessons in ICT and programming, combining theory with hands-on practicals to help students build strong technical foundations and problem-solving skills."
+            />
+            <ExperienceItem
+              title="President – ICT Association Student Chapter | Chalimbana University"
+              period=" July, 2024 — July, 2025"
+              description="As President, I led initiatives to promote innovation and technical growth, organizing workshops, mentoring students, and collaborating with industry partners to create opportunities for skill development and career advancement."
             />
           </div>
         </div>
