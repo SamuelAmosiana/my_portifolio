@@ -31,10 +31,11 @@ export function ContactPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           onClick={() => navigate("/contact")}
-          className="inline-flex items-center gap-3 bg-[#f8f7f9] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif] text-[18px] px-10 py-4 rounded-2xl hover:bg-[#FFDD00] transition-colors duration-300"
+          className="group border-2 border-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9]"
         >
-          <Mail size={22} />
-          Contact Me
+          <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300">
+            Contact Me
+          </span>
         </motion.button>
       </div>
     </section>
