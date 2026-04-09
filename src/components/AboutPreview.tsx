@@ -5,7 +5,7 @@ export function AboutPreview() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 relative bg-[#1f1f1f]">
+    <section className="pt-0 pb-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

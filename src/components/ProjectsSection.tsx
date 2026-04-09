@@ -36,14 +36,14 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="py-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
         >
-          Projects
+          My Projects
         </motion.h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
@@ -56,7 +56,7 @@ export function ProjectsSection() {
 
 function ProjectCard({ project, index }: { project: any, index: number }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -70,7 +70,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
           {project.period}
         </span>
       </div>
-      
+
       <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/70 mb-6 leading-relaxed">
         {project.description}
       </p>

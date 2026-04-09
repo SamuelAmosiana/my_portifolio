@@ -33,7 +33,7 @@ export function FeaturedProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9]"
           >
-            Projects
+            Featured Projects
           </motion.h2>
           <motion.button
             initial={{ opacity: 0, y: 20 }}

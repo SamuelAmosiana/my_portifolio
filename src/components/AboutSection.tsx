@@ -2,9 +2,9 @@ import { motion } from "motion/react";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 relative bg-[#1f1f1f]">
+    <section id="about" className="pt-0 pb-16 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -12,9 +12,9 @@ export function AboutSection() {
         >
           About me
         </motion.h2>
-        
+
         <div className="max-w-4xl">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -22,7 +22,7 @@ export function AboutSection() {
           >
             I'm a dynamic and results-driven Software Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
           </motion.p>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -34,14 +34,14 @@ export function AboutSection() {
 
         {/* Education */}
         <div className="mt-16">
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
           >
             EDUCATION
           </motion.h3>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="max-w-4xl"
@@ -57,7 +57,7 @@ export function AboutSection() {
 
         {/* Experience */}
         <div className="mt-16">
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
@@ -94,7 +94,7 @@ export function AboutSection() {
 
 function ExperienceItem({ title, period, description }: { title: string; period: string; description: string }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
