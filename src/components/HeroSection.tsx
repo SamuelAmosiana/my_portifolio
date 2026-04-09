@@ -66,14 +66,14 @@ export function HeroSection() {
           className="space-y-8 text-center lg:text-left"
         >
           <div className="space-y-4">
-            <h2 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9]">
-              Hi, I'm Samuel Sianamate
+            <h2 className="font-['Poppins:Bold',_sans-serif] text-[50px] text-[#f8f7f9]">
+              Hi, I'm Samuel
             </h2>
-            <h1 className="font-['Poppins:Bold',_sans-serif] text-[30px] lg:text-[96px] leading-[1.1] lg:leading-[0.9] text-[#f8f7f9]">
-              SOFTWARE<br />ENGINEER
+            <h1 className="font-['Poppins:Bold',_sans-serif] text-[14px] lg:text-[32px] leading-[1.2] text-[#f8f7f9] whitespace-nowrap">
+              Systems Developer · DevOps Engineer · Innovator
             </h1>
             <p className="font-['Poppins:Regular',_sans-serif] text-[20px] text-[#f8f7f9]/60 max-w-lg mx-auto lg:mx-0">
-              Building scalable applications and innovative solutions with modern technologies.
+              I Build Enterprize Scalable Applications and Innovative Solutions with Modern Technologies.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export function HeroSection() {
               className="group border-2 border-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9] hover:text-[#1f1f1f]"
             >
               <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300">
-                VIEW PROJECTS
+                View My Work
               </span>
             </button>
             <button
@@ -91,7 +91,7 @@ export function HeroSection() {
               className="group bg-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9]/90 text-[#1f1f1f]"
             >
               <span className="font-['Poppins:Bold',_sans-serif] text-[18px]">
-                CONTACT ME
+                Get in Touch
               </span>
             </button>
           </div>
