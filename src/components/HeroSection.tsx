@@ -169,8 +169,8 @@ export function HeroSection() {
             <motion.div
               className="absolute"
               style={{
-                top: '100%',
-                left: '50%',
+                top: '-10%',
+                left: '30%',
                 transform: 'translateX(-50%)',
               }}
               animate={{
@@ -192,7 +192,7 @@ export function HeroSection() {
             <motion.div
               className="absolute"
               style={{
-                top: '30%',
+                top: '70%',
                 right: '-8%',
               }}
               animate={{
