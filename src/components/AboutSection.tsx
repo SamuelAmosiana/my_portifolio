@@ -20,7 +20,7 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
           >
-            I'm a dynamic and results-driven Software Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
+            I'm a dynamic and results-driven Software Developer and DevOps Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

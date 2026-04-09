@@ -7,14 +7,14 @@ export function AboutPreview() {
   return (
     <section className="pt-0 pb-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2
+        <motion.h5
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
+          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] text-[#f8f7f9] mb-12"
         >
           About me
-        </motion.h2>
+        </motion.h5>
 
         <div className="max-w-4xl">
           <motion.p
@@ -23,7 +23,7 @@ export function AboutPreview() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
           >
-            I'm a dynamic and results-driven Software Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
+            I'm a dynamic and results-driven Developer and Engineer with a robust background in archtecting whole stack, no hand-offs, no voids because I think not accross features but within systems themselves.
           </motion.p>
 
           <motion.div

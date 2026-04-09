@@ -40,7 +40,7 @@ export function FeaturedProjects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             onClick={() => navigate("/projects")}
-            className="self-start sm:self-end mb-2 border border-[#f8f7f9]/30 text-[#f8f7f9]/70 hover:text-[#FFDD00] hover:border-[#FFDD00] font-['Poppins:Medium',_sans-serif] text-[16px] px-5 py-2 rounded-xl transition-colors duration-200 whitespace-nowrap"
+            className="self-start sm:self-end mb-2 border border-[#f8f7f9]/30 text-[#f8f7f9]/56 hover:text-[#FFDD00] hover:border-[#FFDD00] font-['Poppins:Medium',_sans-serif] text-[6px] px-5 py-2 rounded-xl transition-colors duration-200 whitespace-nowrap"
           >
             View all →
           </motion.button>
