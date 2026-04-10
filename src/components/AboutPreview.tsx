@@ -39,8 +39,8 @@ export function AboutPreview() {
     <section className="pt-0 pb-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Section heading row — mirrors FeaturedProjects header layout */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        {/* Section heading — centered */}
+        <div className="flex flex-col items-center text-center mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,16 +49,6 @@ export function AboutPreview() {
           >
             About me
           </motion.h2>
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            onClick={() => navigate("/about")}
-            className="self-start sm:self-end mb-2 border border-[#f8f7f9]/30 text-[#f8f7f9]/56 hover:text-[#FFDD00] hover:border-[#FFDD00] font-['Poppins:Medium',_sans-serif] text-[6px] px-5 py-2 rounded-xl transition-colors duration-200 whitespace-nowrap"
-          >
-            Explore more →
-          </motion.button>
         </div>
 
         {/* 3-column inline card grid — same grid pattern as FeaturedProjects */}
@@ -125,13 +115,13 @@ export function AboutPreview() {
           })}
         </div>
 
-        {/* CTA button */}
+        {/* CTA button — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12"
+          className="mt-12 flex justify-center"
         >
           <button
             onClick={() => navigate("/about")}
