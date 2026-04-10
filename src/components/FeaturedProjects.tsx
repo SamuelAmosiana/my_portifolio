@@ -27,7 +27,7 @@ export function FeaturedProjects() {
   return (
     <section className="py-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col items-center text-center mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,15 +35,6 @@ export function FeaturedProjects() {
           >
             Featured Projects
           </motion.h2>
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            onClick={() => navigate("/projects")}
-            className="self-start sm:self-end mb-2 border border-[#f8f7f9]/30 text-[#f8f7f9]/56 hover:text-[#FFDD00] hover:border-[#FFDD00] font-['Poppins:Medium',_sans-serif] text-[6px] px-5 py-2 rounded-xl transition-colors duration-200 whitespace-nowrap"
-          >
-            View all →
-          </motion.button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
