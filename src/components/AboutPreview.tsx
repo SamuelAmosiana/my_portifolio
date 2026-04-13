@@ -71,21 +71,12 @@ export function AboutPreview() {
                 className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group flex flex-col gap-5"
               >
                 {/* Icon badge */}
-                <div
-                  className="flex items-center justify-center w-[54px] h-[54px] rounded-xl"
-                  style={{
-                    background: `${role.accentColor}18`,
-                    border: `1.5px solid ${role.accentColor}40`,
-                  }}
-                >
-                  <Icon size={26} strokeWidth={2} style={{ color: role.accentColor }} />
+                <div className="flex items-center justify-center w-[54px] h-[54px] rounded-xl bg-[#f8f7f9]/10 border border-[#f8f7f9]/20">
+                  <Icon size={26} strokeWidth={2} className="text-[#f8f7f9]" />
                 </div>
 
                 {/* Role title */}
-                <h3
-                  className="font-['Poppins:Bold',_sans-serif] text-[24px] transition-colors"
-                  style={{ color: role.accentColor }}
-                >
+                <h3 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors">
                   {role.label}
                 </h3>
 
@@ -99,12 +90,7 @@ export function AboutPreview() {
                   {role.highlights.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-['Poppins:Medium',_sans-serif] px-3 py-1 rounded-full"
-                      style={{
-                        background: `${role.accentColor}14`,
-                        color: role.accentColor,
-                        border: `1px solid ${role.accentColor}30`,
-                      }}
+                      className="text-xs font-['Poppins:Medium',_sans-serif] text-[#f8f7f9]/60 bg-[#f8f7f9]/10 px-3 py-1 rounded-full"
                     >
                       {tag}
                     </span>
