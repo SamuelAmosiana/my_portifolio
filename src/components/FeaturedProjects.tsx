@@ -13,7 +13,7 @@ const featuredProjects = [
   },
   {
     title: "Lusaka South University College Website",
-    period: "2024",
+    period: "2025",
     description:
       "The official institutional website for Lusaka South University College, featuring programme listings, admissions information, news, and a fully responsive public-facing interface.",
     tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],

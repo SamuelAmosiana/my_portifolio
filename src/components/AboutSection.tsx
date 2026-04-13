@@ -20,16 +20,14 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
           >
-            I'm a dynamic and results-driven Software Developer and DevOps Engineer with a robust background in full-stack development and product innovation. I specialize in building scalable web applications using React, Node.js, Laravel, Django and modern cloud infrastructure.
-          </motion.p>
+            I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I work across the stack using technologies such as React, Node.js, Laravel, Django, and modern cloud infrastructure to create efficient and reliable solutions.          </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6]"
           >
-            My journey in tech has been driven by a passion for solving complex problems and delivering user-centric solutions. With experience in both startup environments and large-scale enterprises, I bring a unique perspective that bridges the gap between technical excellence and business value. I am constantly learning and exploring new technologies to stay ahead of the curve.
-          </motion.p>
+            My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.          </motion.p>
         </div>
 
         {/* Education */}
