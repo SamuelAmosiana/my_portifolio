@@ -43,7 +43,7 @@ export function FeedbackContactSection() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-lg px-4 py-3 text-[#f8f7f9] focus:outline-none focus:border-[#f8f7f9]/30 transition-colors"
-                placeholder="John Doe"
+                placeholder="Your Name"
               />
             </div>
             <div>
@@ -55,7 +55,7 @@ export function FeedbackContactSection() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-lg px-4 py-3 text-[#f8f7f9] focus:outline-none focus:border-[#f8f7f9]/30 transition-colors"
-                placeholder="john@example.com"
+                placeholder="Your email address"
               />
             </div>
             <div>
@@ -67,7 +67,7 @@ export function FeedbackContactSection() {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-lg px-4 py-3 text-[#f8f7f9] focus:outline-none focus:border-[#f8f7f9]/30 transition-colors resize-none"
-                placeholder="Tell me about your project..."
+                placeholder="Your message..."
               />
             </div>
 
@@ -108,8 +108,8 @@ export function FeedbackContactSection() {
                 <Star
                   size={40}
                   className={`${star <= (hoverRating || rating)
-                      ? "fill-[#FFDD00] text-[#FFDD00]"
-                      : "text-[#f8f7f9]/20"
+                    ? "fill-[#FFDD00] text-[#FFDD00]"
+                    : "text-[#f8f7f9]/20"
                     } transition-colors duration-200`}
                 />
               </button>
@@ -124,6 +124,18 @@ export function FeedbackContactSection() {
               <p>Email: sianamatesamuel@gmail.com</p>
               <p>Phone: +260 979 667 723</p>
               <p>Location: Lusaka, Zambia</p>
+            </div>
+          </div>
+
+          {/* Availability */}
+          <div className="space-y-3 pt-4 border-t border-[#f8f7f9]/10">
+            <h4 className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9] flex items-center gap-2">
+              <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#34D399] animate-pulse" />
+              Availability
+            </h4>
+            <div className="space-y-2 text-[#f8f7f9]/60 font-['Poppins:Regular',_sans-serif]">
+              <p>I'm currently available for freelance work and exciting collaborations.</p>
+              <p>My typical response time is within 24 – 48 hours.</p>
             </div>
           </div>
         </motion.div>
