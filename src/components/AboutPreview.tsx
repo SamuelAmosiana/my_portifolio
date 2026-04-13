@@ -9,7 +9,7 @@ const roles = [
     label: "Systems Developer",
     accentColor: "#FFDD00",
     description:
-      "I architect full-stack, enterprise-grade applications from the ground up — no hand-offs, no gaps. I think not across features but within systems themselves, delivering scalable, robust solutions end-to-end.",
+      "I design and build full-stack, enterprise-grade applications from the ground up,thinking beyond features to architect complete, scalable systems that deliver robust end-to-end solutions.",
     highlights: ["Full-Stack Architecture", "Scalable APIs", "Database Design"],
   },
   {
@@ -18,7 +18,7 @@ const roles = [
     label: "DevOps Engineer",
     accentColor: "#A78BFA",
     description:
-      "I bridge the gap between development and operations — automating pipelines, managing cloud infrastructure, and ensuring seamless CI/CD workflows so software ships fast, reliably, and at scale.",
+      "I streamline the path from development to deployment, automating pipelines, managing cloud infrastructure, and ensuring fast, reliable, and scalable software delivery through efficient CI/CD workflows.",
     highlights: ["CI/CD Pipelines", "Cloud Infrastructure", "Containerisation"],
   },
   {
