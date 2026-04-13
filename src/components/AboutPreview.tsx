@@ -90,7 +90,7 @@ export function AboutPreview() {
                 </h3>
 
                 {/* Description */}
-                <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/70 leading-relaxed flex-1">
+                <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9] leading-relaxed flex-1">
                   {role.description}
                 </p>
 
@@ -125,14 +125,14 @@ export function AboutPreview() {
         >
           <button
             onClick={() => navigate("/about")}
-            className="group flex items-center gap-3 border-2 border-[#FFDD00] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#FFDD00]"
+            className="group flex items-center gap-3 border-2 border-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9]"
           >
-            <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#FFDD00] group-hover:text-[#1f1f1f] transition-colors duration-300">
+            <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300">
               Explore more about Samuel
             </span>
             <ArrowRight
               size={20}
-              className="text-[#FFDD00] group-hover:text-[#1f1f1f] transition-colors duration-300 group-hover:translate-x-1"
+              className="text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300 group-hover:translate-x-1"
             />
           </button>
         </motion.div>

@@ -73,7 +73,7 @@ export function HeroSection() {
               Systems Developer · DevOps Engineer · Innovator
             </h1>
             <p className="font-['Poppins:Regular',_sans-serif] text-[20px] text-[#f8f7f9]/60 max-w-lg mx-auto lg:mx-0">
-              I Build Enterprize Scalable Applications and Innovative Solutions with Modern Technologies.
+              Building Enterprise Scalable Applications and Innovative Solutions with Modern Technologies.
             </p>
           </div>
 
