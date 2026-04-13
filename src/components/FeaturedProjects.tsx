@@ -1,23 +1,23 @@
 import { motion } from "motion/react";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const featuredProjects = [
   {
-    title: "Energic - EV Management",
+    title: "Student Records Management System",
     period: "Current",
     description:
-      "A comprehensive EV charging station management system. Features real-time locating, scheduling, and maintenance alerts using React, Node.js, and Google Maps API.",
-    tech: ["React", "Node.js", "MongoDB", "Maps API"],
-    links: { github: "#", demo: "#" },
+      "A comprehensive enterprise-grade student records management system built for Lusaka South University College. Handles student registration, academic records, results processing, and administrative workflows at scale.",
+    tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],
+    links: { github: "", demo: "https://srms.lsc.edu.zm/" },
   },
   {
-    title: "Grocery Delivery Platform",
+    title: "Lusaka South University College Website",
     period: "2024",
     description:
-      "Full-stack scalable grocery delivery platform. Implemented real-time order tracking, inventory management, and secure payment gateway integration.",
-    tech: ["Next.js", "PostgreSQL", "Stripe", "Redis"],
-    links: { github: "#", demo: "#" },
+      "The official institutional website for Lusaka South University College, featuring programme listings, admissions information, news, and a fully responsive public-facing interface.",
+    tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],
+    links: { github: "", demo: "https://lsc.edu.zm" },
   },
 ];
 
