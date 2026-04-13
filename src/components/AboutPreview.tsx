@@ -24,11 +24,11 @@ const roles = [
   {
     id: "tutor-educator",
     icon: BookOpen,
-    label: "Tutor & Educator",
+    label: "Technical Mentor",
     accentColor: "#34D399",
     description:
-      "I'm passionate about transferring knowledge and growing the next generation of tech professionals. I break down complex concepts into clear, practical lessons that empower learners to build real solutions.",
-    highlights: ["Mentorship", "Technical Workshops", "Curriculum Design"],
+      "I’m passionate about mentoring and empowering the next generation of tech professionals, breaking down complex concepts into practical, real-world solutions.",
+    highlights: ["Mentorship", "Technical Workshops", "Knowledge Sharing"],
   },
 ];
 
@@ -76,7 +76,7 @@ export function AboutPreview() {
                 </div>
 
                 {/* Role title */}
-                <h3 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors">
+                <h3 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors text-center">
                   {role.label}
                 </h3>
 

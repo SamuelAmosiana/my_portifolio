@@ -70,10 +70,10 @@ export function HeroSection() {
               Hi, I'm Samuel
             </h1>
             <h1 className="font-['Poppins:Bold',_sans-serif] text-[14px] lg:text-[32px] leading-[1.2] text-[#f8f7f9] whitespace-nowrap">
-              Systems Developer · DevOps Engineer · Innovator
+              Systems Developer · DevOps Engineer · Technical Mentor
             </h1>
             <p className="font-['Poppins:Regular',_sans-serif] text-[20px] text-[#f8f7f9]/60 max-w-lg mx-auto lg:mx-0">
-              Building Enterprise Scalable Applications and Innovative Solutions with Modern Technologies.
+              Engineering Scalable Systems and Delivering Reliable Solutions with Modern Technologies.
             </p>
           </div>
 
