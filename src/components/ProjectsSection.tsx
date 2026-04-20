@@ -4,11 +4,11 @@ import { Github, ExternalLink } from "lucide-react";
 export function ProjectsSection() {
   const projects = [
     {
-      title: "Energic - EV Management",
+      title: "Student Records Management System",
       period: "Current",
-      description: "A comprehensive EV charging station management system. Features real-time locating, scheduling, and maintenance alerts using React, Node.js, and Google Maps API.",
-      tech: ["React", "Node.js", "MongoDB", "Maps API"],
-      links: { github: "#", demo: "#" }
+      description: "A comprehensive enterprise-grade student records management system built for Lusaka South University College. Handles student registration, academic records, results processing, and administrative workflows at scale.",
+      tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],
+      links: { github: "", demo: "https://srms.lsc.edu.zm/" }
     },
     {
       title: "Grocery Delivery Platform",

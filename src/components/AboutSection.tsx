@@ -1,5 +1,153 @@
 import { motion } from "motion/react";
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+interface ExperienceEntry {
+  title: string;
+  period: string;
+  description: string;
+}
+
+interface ExperienceCategoryProps {
+  icon: string;
+  categoryLabel: string;
+  accentColor: string;
+  glowColor: string;
+  entries: ExperienceEntry[];
+  delay?: number;
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const professionalExperiences: ExperienceEntry[] = [
+  {
+    title: "ICT Officer (Senior Engineer)",
+    period: "January 2026 — Present",
+    description:
+      "Manage and optimize IT infrastructure, ensuring system reliability, security, and scalability. Lead troubleshooting, implement system upgrades, and support backend services that drive organizational efficiency at Lusaka South University College.",
+  },
+  {
+    title: "Junior Developer",
+    period: "January 2025 — December 2025",
+    description:
+      "Designed and developed responsive web applications, collaborated on backend systems, and contributed to building scalable, user-focused software solutions at Lusaka South University College.",
+  },
+];
+
+const teachingExperiences: ExperienceEntry[] = [
+  {
+    title: "Student Teacher",
+    period: "January 2024 — April 2024",
+    description:
+      "Delivered engaging lessons in ICT and programming at Siavonga STEM Secondary School, combining theory with hands-on practicals to help students build strong technical foundations and problem-solving skills.",
+  },
+];
+
+const leadershipExperiences: ExperienceEntry[] = [
+  {
+    title: "President – ICT Association Student Chapter",
+    period: "July 2024 — July 2025",
+    description:
+      "Led initiatives to promote innovation and technical growth at Chalimbana University, organizing workshops, mentoring students, and collaborating with industry partners to create opportunities for skill development and career advancement.",
+  },
+];
+
+// ─── Sub-components ───────────────────────────────────────────────────────────
+function ExperienceEntry({ title, period, description, index }: ExperienceEntry & { index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -16 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.45, delay: 0.08 * index }}
+      className="relative pl-5 border-l border-white/10 last:border-transparent"
+    >
+      {/* Timeline dot */}
+      <span
+        className="absolute -left-[5px] top-[6px] w-[9px] h-[9px] rounded-full border-2 border-white/20 bg-[#1f1f1f]"
+        aria-hidden="true"
+      />
+      <h5
+        className="font-['Poppins:SemiBold',_sans-serif] text-[16px] md:text-[18px] text-[#f8f7f9] leading-snug mb-1"
+      >
+        {title}
+      </h5>
+      <p className="font-['Poppins:ExtraLight',_sans-serif] text-[13px] md:text-[14px] text-[rgba(248,247,249,0.45)] mb-2 tracking-wide">
+        {period}
+      </p>
+      <p className="font-['Poppins:Regular',_sans-serif] text-[14px] md:text-[16px] text-[rgba(248,247,249,0.55)] leading-[1.65]">
+        {description}
+      </p>
+    </motion.div>
+  );
+}
+
+function ExperienceCategoryCard({
+  icon,
+  categoryLabel,
+  accentColor,
+  glowColor,
+  entries,
+  delay = 0,
+}: ExperienceCategoryProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay }}
+      className="relative rounded-2xl overflow-hidden group"
+      style={{
+        background: "rgba(255,255,255,0.035)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        backdropFilter: "blur(12px)",
+        boxShadow: `0 4px 32px -8px ${glowColor}`,
+      }}
+    >
+      {/* Subtle top accent bar */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
+        style={{ background: accentColor }}
+        aria-hidden="true"
+      />
+
+      {/* Card content */}
+      <div className="px-6 pt-7 pb-8">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-6">
+          <span
+            className="flex items-center justify-center w-10 h-10 rounded-xl text-[20px]"
+            style={{
+              background: `${glowColor}22`,
+              border: `1px solid ${glowColor}44`,
+            }}
+            aria-hidden="true"
+          >
+            {icon}
+          </span>
+          <h4
+            className="font-['Poppins:Bold',_sans-serif] text-[13px] tracking-[0.12em] uppercase"
+            style={{ color: accentColor }}
+          >
+            {categoryLabel}
+          </h4>
+        </div>
+
+        {/* Entries */}
+        <div className="space-y-7">
+          {entries.map((entry, i) => (
+            <ExperienceEntry key={entry.title} {...entry} index={i} />
+          ))}
+        </div>
+      </div>
+
+      {/* Hover glow overlay */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
+        style={{ background: `radial-gradient(circle at 50% 0%, ${glowColor}12 0%, transparent 70%)` }}
+        aria-hidden="true"
+      />
+    </motion.div>
+  );
+}
+
+// ─── Main Section ─────────────────────────────────────────────────────────────
 export function AboutSection() {
   return (
     <section id="about" className="pt-0 pb-16 relative bg-[#1f1f1f]">
@@ -20,14 +168,16 @@ export function AboutSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
           >
-            I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I work across the stack using technologies such as React, Node.js, Laravel, Django, and modern cloud infrastructure to create efficient and reliable solutions.          </motion.p>
+            I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I work across the stack using technologies such as React, Node.js, Laravel, Django, and modern cloud infrastructure to create efficient and reliable solutions.
+          </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6]"
           >
-            My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.          </motion.p>
+            My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
+          </motion.p>
         </div>
 
         {/* Education */}
@@ -58,55 +208,39 @@ export function AboutSection() {
           <motion.h3
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
+            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-10"
           >
             EXPERIENCE
           </motion.h3>
-          <div className="space-y-12">
-            <ExperienceItem
-              title="ICT Officer (Senior Engineer) - Lusaka South University College"
-              period="January, 2026 — Present"
-              description="In this role, I manage and optimize IT infrastructure, ensuring system reliability, security, and scalability. I also lead troubleshooting, implement system upgrades, and support backend services that drive organizational efficiency."
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <ExperienceCategoryCard
+              icon="💼"
+              categoryLabel="Professional"
+              accentColor="#7c9fff"
+              glowColor="#4a6fff"
+              entries={professionalExperiences}
+              delay={0}
             />
-            <ExperienceItem
-              title="Junior Developer - Lusaka South University College"
-              period="January, 2025 — December, 2025"
-              description="In this role, I designed and developed responsive web applications, collaborate on backend systems, and contribute to building scalable, user-focused software solutions while continuously improving my development skills."
+            <ExperienceCategoryCard
+              icon="🏫"
+              categoryLabel="Teaching"
+              accentColor="#5ed3a0"
+              glowColor="#22c47a"
+              entries={teachingExperiences}
+              delay={0.12}
             />
-            <ExperienceItem
-              title="Student Teacher - Siavonga STEM Secondary School"
-              period="January, 2024 — April, 2024"
-              description="In this role, I delivered engaging lessons in ICT and programming, combining theory with hands-on practicals to help students build strong technical foundations and problem-solving skills."
-            />
-            <ExperienceItem
-              title="President – ICT Association Student Chapter | Chalimbana University"
-              period=" July, 2024 — July, 2025"
-              description="As President, I led initiatives to promote innovation and technical growth, organizing workshops, mentoring students, and collaborating with industry partners to create opportunities for skill development and career advancement."
+            <ExperienceCategoryCard
+              icon="🏆"
+              categoryLabel="Leadership"
+              accentColor="#f0a05a"
+              glowColor="#e07c24"
+              entries={leadershipExperiences}
+              delay={0.24}
             />
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ExperienceItem({ title, period, description }: { title: string; period: string; description: string }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="max-w-4xl"
-    >
-      <h4 className="font-['Poppins:ExtraBold',_sans-serif] text-[20px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-1">
-        {title}
-      </h4>
-      <p className="font-['Poppins:ExtraLight',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-3">
-        {period}
-      </p>
-      <p className="font-['Poppins:Medium',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.5]">
-        {description}
-      </p>
-    </motion.div>
   );
 }

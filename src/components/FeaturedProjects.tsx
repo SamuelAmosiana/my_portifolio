@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const featuredProjects = [
   {
-    title: "Student Records Management System",
-    period: "Current",
+    title: "NutriZed",
+    period: "2025",
     description:
-      "A comprehensive enterprise-grade student records management system built for Lusaka South University College. Handles student registration, academic records, results processing, and administrative workflows at scale.",
-    tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],
-    links: { github: "", demo: "https://srms.lsc.edu.zm/" },
+      "A smart, locally-grounded nutrition platform built specifically for Zambia and similar African communities — bridging the gap between modern health technology and everyday food realities on the ground.",
+    tech: ["PHP", "HTML", "CSS", "JavaScript"],
+    links: { github: "", demo: "https://samuelamosiana.github.io/nutri_zed/nutrized_web.html" },
   },
   {
     title: "Lusaka South University College Website",

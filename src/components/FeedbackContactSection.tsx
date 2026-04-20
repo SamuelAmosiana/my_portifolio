@@ -229,11 +229,10 @@ export function FeedbackContactSection() {
               >
                 <Star
                   size={44}
-                  className={`${
-                    star <= (hoverRating || rating)
+                  className={`${star <= (hoverRating || rating)
                       ? "fill-[#FFDD00] text-[#FFDD00]"
                       : "text-[#f8f7f9]/20"
-                  } transition-colors duration-200`}
+                    } transition-colors duration-200`}
                 />
               </button>
             ))}
@@ -247,8 +246,8 @@ export function FeedbackContactSection() {
               {rating === 5
                 ? "🎉 Amazing! Thank you so much!"
                 : rating >= 3
-                ? "😊 Thanks for your feedback!"
-                : "😔 I appreciate your honesty, I'll keep improving!"}
+                  ? "😊 Thanks for your feedback!"
+                  : "😔 I appreciate your honesty, I'll keep improving!"}
             </motion.p>
           )}
         </motion.div>
