@@ -9,7 +9,7 @@ export function SupportSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[48px] md:text-[64px] text-[#f8f7f9] mb-8"
+          className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[48px] md:text-[56px] text-[#f8f7f9] mb-8"
         >
           Support My Work
         </motion.h2>

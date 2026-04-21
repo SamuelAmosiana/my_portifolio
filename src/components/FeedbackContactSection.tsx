@@ -29,12 +29,12 @@ export function FeedbackContactSection() {
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          className="text-center mb-28"
         >
           <h2 className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[48px] md:text-[56px] text-[#f8f7f9]">
             Get in Touch
           </h2>
-          <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/50 mt-3 text-[16px] max-w-xl mx-auto">
+          <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/50 mt-8 text-[16px] max-w-xl mx-auto">
             Have a project in mind or just want to say hello? I'd love to hear from you.
           </p>
         </motion.div>
@@ -49,7 +49,7 @@ export function FeedbackContactSection() {
             transition={{ duration: 0.5 }}
             className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 flex flex-col gap-8"
           >
-            <h3 className="font-['Poppins:Bold',_sans-serif] text-[26px] text-[#f8f7f9]">
+            <h3 className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[42px] md:text-[48px] text-[#f8f7f9]">
               Contact Information
             </h3>
 
@@ -124,7 +124,7 @@ export function FeedbackContactSection() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8"
           >
-            <h3 className="font-['Poppins:Bold',_sans-serif] text-[26px] text-[#f8f7f9] mb-8">
+            <h3 className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[42px] md:text-[48px] text-[#f8f7f9] mb-8">
               Send me a Message
             </h3>
 
@@ -209,9 +209,9 @@ export function FeedbackContactSection() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-16 bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-10 text-center"
+          className="mt-16 bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-10 text-center max-w-2xl mx-auto"
         >
-          <h3 className="font-['Poppins:Bold',_sans-serif] text-[28px] text-[#f8f7f9] mb-3">
+          <h3 className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[48px] md:text-[56px] text-[#f8f7f9] mb-3">
             Rate my Portfolio
           </h3>
           <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/50 mb-8 max-w-md mx-auto">
