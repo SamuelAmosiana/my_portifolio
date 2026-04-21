@@ -36,7 +36,7 @@ export function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
         >
-          Skills
+          Skills & Expertise
         </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

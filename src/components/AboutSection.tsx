@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Briefcase, GraduationCap, Trophy } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import aboutImage from "../assets/about_me.jpg";
+import { SkillsSection } from "./SkillsSection";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface ExperienceEntryData {
@@ -207,29 +208,6 @@ export function AboutSection() {
 
         </div>
 
-        {/* Education */}
-        <div className="mt-16">
-          <motion.h3
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
-          >
-            EDUCATION
-          </motion.h3>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
-            <h4 className="font-['Poppins:ExtraBold',_sans-serif] text-[20px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-2">
-              Chalimbana University
-            </h4>
-            <p className="font-['Poppins:Medium',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.5]">
-              Bachelor of Information and Communication Technology with Education.
-            </p>
-          </motion.div>
-        </div>
-
         {/* Experience */}
         <div className="mt-16">
           <motion.h3
@@ -237,7 +215,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] text-center mb-12"
           >
-            Experience
+            Work Experience
           </motion.h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -260,6 +238,32 @@ export function AboutSection() {
               delay={0.24}
             />
           </div>
+        </div>
+
+        {/* Skills */}
+        <SkillsSection />
+
+        {/* Education */}
+        <div className="mt-16">
+          <motion.h3
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
+          >
+            EDUCATION
+          </motion.h3>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="max-w-4xl"
+          >
+            <h4 className="font-['Poppins:ExtraBold',_sans-serif] text-[20px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-2">
+              Chalimbana University
+            </h4>
+            <p className="font-['Poppins:Medium',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.5]">
+              Bachelor of Information and Communication Technology with Education.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
