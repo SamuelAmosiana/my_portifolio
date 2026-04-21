@@ -32,6 +32,12 @@ const professionalExperiences: ExperienceEntry[] = [
 
 const teachingExperiences: ExperienceEntry[] = [
   {
+    title: "Part-Time Lecturer — ICT Programmes (Diploma & Certificate)",
+    period: "January 2026 — Present",
+    description:
+      "Delivering part-time lectures in ICT programmes at Lusaka South University College, covering Introduction to Computers, Computer Application Packages, and Computer Studies. Equipping students with foundational digital literacy and practical computing skills.",
+  },
+  {
     title: "Student Teacher",
     period: "January 2024 — April 2024",
     description:
@@ -90,8 +96,8 @@ function ExperienceCategoryCard({
       transition={{ duration: 0.55, delay }}
       className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group relative"
     >
-      {/* Card content */}
-      <div className="flex items-center gap-3 mb-6">
+      {/* Card header — centered */}
+      <div className="flex flex-col items-center gap-2 mb-6 text-center">
         {/* Icon badge */}
         <span
           className="flex items-center justify-center w-10 h-10 rounded-xl text-[20px] bg-[#f8f7f9]/10 border border-[#f8f7f9]/20"
@@ -173,9 +179,9 @@ export function AboutSection() {
         {/* Experience */}
         <div className="mt-16">
           <motion.h3
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-10 text-center"
           >
             EXPERIENCE
           </motion.h3>
