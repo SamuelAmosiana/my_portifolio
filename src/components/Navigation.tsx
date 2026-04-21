@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Github, Linkedin, Facebook } from 'lucide-react';
+import { Github, Linkedin, Facebook, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useTheme } from '../context/ThemeContext';
 
 // Official X (formerly Twitter) logo as SVG
 const XIcon = ({ size = 24 }: { size?: number }) => (
@@ -14,6 +15,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const navItems = [
     { label: 'Home',     path: '/'         },
@@ -81,9 +83,43 @@ export function Navigation() {
               ))}
             </div>
 
-            {/* Social Icons (Desktop) */}
-            <div className="hidden lg:flex items-center gap-6">
-              <div className="h-6 w-px bg-[#f8f7f9]/20" />
+            {/* Social Icons + Theme Toggle (Desktop) */}
+            <div className="hidden lg:flex items-center gap-4">
+              {/* Theme toggle button */}
+              <button
+                id="theme-toggle-desktop"
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="relative w-10 h-10 rounded-full flex items-center justify-center nav-theme-toggle transition-all duration-300 hover:scale-110"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {theme === 'dark' ? (
+                    <motion.span
+                      key="sun"
+                      initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                      transition={{ duration: 0.25, type: 'spring', stiffness: 300 }}
+                      className="absolute"
+                    >
+                      <Sun size={18} className="text-[#FFDD00]" />
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="moon"
+                      initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                      animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                      exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                      transition={{ duration: 0.25, type: 'spring', stiffness: 300 }}
+                      className="absolute"
+                    >
+                      <Moon size={18} className="text-[#6366f1]" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </button>
+
+              <div className="h-6 w-px nav-divider" />
               <div className="flex gap-4">
                 <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" />
                 <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" />
@@ -129,11 +165,45 @@ export function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="mt-8 flex gap-6">
+              <div className="mt-8 flex items-center gap-6">
                 <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={24} />
                 <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={24} />
                 <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={24} />
                 <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={24} />
+
+                {/* Mobile theme toggle */}
+                <button
+                  id="theme-toggle-mobile"
+                  onClick={toggleTheme}
+                  aria-label="Toggle theme"
+                  className="relative w-10 h-10 rounded-full flex items-center justify-center nav-theme-toggle transition-all duration-300"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    {theme === 'dark' ? (
+                      <motion.span
+                        key="sun-mobile"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute"
+                      >
+                        <Sun size={22} className="text-[#FFDD00]" />
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="moon-mobile"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute"
+                      >
+                        <Moon size={22} className="text-[#6366f1]" />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </button>
               </div>
             </div>
           </motion.div>

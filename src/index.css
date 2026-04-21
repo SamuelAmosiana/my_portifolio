@@ -1741,3 +1741,290 @@ html {
   inherits: false;
   initial-value: 1;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   THEME SYSTEM — Light / Dark mode
+   Toggle is driven by [data-theme="light"] on <html>.
+   Dark mode is the default (no attribute needed).
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Smooth colour transitions on every element */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+              color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease;
+}
+
+/* ── Portfolio root wrapper ────────────────────────────────── */
+.portfolio-root {
+  background-color: #1f1f1f;
+  color: #f8f7f9;
+}
+
+/* ── Theme toggle button (navbar) ─────────────────────────── */
+.nav-theme-toggle {
+  background: rgba(248, 247, 249, 0.08);
+  border: 1px solid rgba(248, 247, 249, 0.12);
+}
+.nav-theme-toggle:hover {
+  background: rgba(248, 247, 249, 0.15);
+}
+.nav-divider {
+  background-color: rgba(248, 247, 249, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES  [data-theme="light"]
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Root + body ─────────────────────────────────────────── */
+[data-theme="light"] .portfolio-root {
+  background-color: #f0efe9;
+  color: #1a1a1a;
+}
+
+/* Force ALL text descendants to be dark unless overridden below.
+   This catches inline-rgba colours like text-[rgba(248,247,249,0.5)]
+   that CSS attribute selectors can't target directly. */
+[data-theme="light"] section *,
+[data-theme="light"] footer *,
+[data-theme="light"] nav * {
+  color: inherit;
+}
+
+/* ── Section backgrounds ──────────────────────────────────── */
+[data-theme="light"] section,
+[data-theme="light"] .bg-\[\#1f1f1f\],
+[data-theme="light"] .bg-\[\#1a1a1a\] {
+  background-color: #f0efe9 !important;
+}
+
+/* ── Navbar ───────────────────────────────────────────────── */
+[data-theme="light"] nav {
+  background-color: rgba(240, 239, 233, 0.95) !important;
+  border-bottom-color: rgba(26, 26, 26, 0.1) !important;
+  color: #1a1a1a !important;
+}
+[data-theme="light"] nav a,
+[data-theme="light"] nav button {
+  color: #1a1a1a !important;
+}
+/* Active nav link stays yellow */
+[data-theme="light"] nav a.text-\[\#FFDD00\] {
+  color: #FFDD00 !important;
+}
+
+/* Mobile menu overlay */
+[data-theme="light"] .fixed.inset-0.z-40 {
+  background-color: #f0efe9 !important;
+  color: #1a1a1a !important;
+}
+[data-theme="light"] .fixed.inset-0.z-40 a {
+  color: #1a1a1a !important;
+}
+
+/* ── Theme toggle in light mode ──────────────────────────── */
+[data-theme="light"] .nav-theme-toggle {
+  background: rgba(26, 26, 26, 0.07) !important;
+  border: 1px solid rgba(26, 26, 26, 0.15) !important;
+}
+[data-theme="light"] .nav-theme-toggle:hover {
+  background: rgba(26, 26, 26, 0.13) !important;
+}
+[data-theme="light"] .nav-divider {
+  background-color: rgba(26, 26, 26, 0.2) !important;
+}
+
+/* ── Cards & panels ──────────────────────────────────────── */
+[data-theme="light"] .bg-\[\#f8f7f9\]\/5 {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07) !important;
+}
+[data-theme="light"] .bg-\[\#f8f7f9\]\/8,
+[data-theme="light"] .bg-\[\#f8f7f9\]\/10 {
+  background-color: rgba(26, 26, 26, 0.06) !important;
+}
+[data-theme="light"] .hover\:bg-\[\#f8f7f9\]\/10:hover {
+  background-color: rgba(26, 26, 26, 0.1) !important;
+}
+
+/* ── Borders ─────────────────────────────────────────────── */
+[data-theme="light"] .border-\[\#f8f7f9\]\/10 {
+  border-color: rgba(26, 26, 26, 0.13) !important;
+}
+[data-theme="light"] .border-\[\#f8f7f9\]\/15 {
+  border-color: rgba(26, 26, 26, 0.15) !important;
+}
+[data-theme="light"] .border-\[\#f8f7f9\]\/20 {
+  border-color: rgba(26, 26, 26, 0.18) !important;
+}
+[data-theme="light"] .border-\[\#f8f7f9\] {
+  border-color: #1a1a1a !important;
+}
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-b {
+  border-color: rgba(26, 26, 26, 0.1) !important;
+}
+/* Timeline left border (Achievements & Experience) */
+[data-theme="light"] .border-l-2 {
+  border-left-color: rgba(26, 26, 26, 0.2) !important;
+}
+/* Skills section category underline */
+[data-theme="light"] .border-b.border-\[\#f8f7f9\]\/20 {
+  border-bottom-color: rgba(26, 26, 26, 0.2) !important;
+}
+
+/* ── All text hues ───────────────────────────────────────── */
+/* Full-opacity headings & body text */
+[data-theme="light"] .text-\[\#f8f7f9\] {
+  color: #1a1a1a !important;
+}
+/* 80 % → same dark */
+[data-theme="light"] .text-\[\#f8f7f9\]\/80 {
+  color: rgba(26, 26, 26, 0.85) !important;
+}
+/* 70 % */
+[data-theme="light"] .text-\[\#f8f7f9\]\/70 {
+  color: rgba(26, 26, 26, 0.72) !important;
+}
+/* 60 % — muted secondary text */
+[data-theme="light"] .text-\[\#f8f7f9\]\/60 {
+  color: rgba(26, 26, 26, 0.62) !important;
+}
+/* 50 % — About page body paragraphs (also catches rgba variant) */
+[data-theme="light"] .text-\[\#f8f7f9\]\/50,
+[data-theme="light"] .text-\[rgba\(248\,247\,249\,0\.5\)\] {
+  color: rgba(26, 26, 26, 0.62) !important;
+}
+/* 40 % — the most invisible: description text inside cards / certs */
+[data-theme="light"] .text-\[\#f8f7f9\]\/40 {
+  color: rgba(26, 26, 26, 0.55) !important;
+}
+/* 30 % */
+[data-theme="light"] .text-\[\#f8f7f9\]\/30 {
+  color: rgba(26, 26, 26, 0.4) !important;
+}
+
+/* Skills bar: label & percentage */
+[data-theme="light"] span.text-\[\#f8f7f9\]\/80,
+[data-theme="light"] span.text-\[\#f8f7f9\]\/50 {
+  color: #1a1a1a !important;
+}
+
+/* Skills bar track & fill */
+[data-theme="light"] .bg-\[\#f8f7f9\]\/10.rounded-full {
+  background-color: rgba(26, 26, 26, 0.1) !important;
+}
+[data-theme="light"] .bg-\[\#f8f7f9\]\/60 {
+  background-color: #1a1a1a !important;
+}
+
+/* ── Placeholder text ────────────────────────────────────── */
+[data-theme="light"] ::placeholder {
+  color: rgba(26, 26, 26, 0.35) !important;
+}
+
+/* ── Form inputs ─────────────────────────────────────────── */
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(26, 26, 26, 0.15) !important;
+  color: #1a1a1a !important;
+}
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus {
+  border-color: rgba(26, 26, 26, 0.45) !important;
+  outline: none !important;
+}
+
+/* ── Primary action button (solid white bg in dark mode) ─── */
+/* e.g. "Send Message" — bg-[#f8f7f9] + text-[#1f1f1f] */
+[data-theme="light"] .bg-\[\#f8f7f9\] {
+  background-color: #1a1a1a !important;
+  color: #f0efe9 !important;
+}
+[data-theme="light"] .hover\:bg-\[\#f8f7f9\]\/90:hover {
+  background-color: rgba(26, 26, 26, 0.88) !important;
+}
+[data-theme="light"] .text-\[\#1f1f1f\] {
+  color: #f0efe9 !important;
+}
+
+/* ── Outline CTA buttons (border-2 border-[#f8f7f9]) ────────
+   Dark mode: transparent bg → fill with white on hover + dark text
+   Light mode: transparent bg → fill with dark on hover + light text  */
+[data-theme="light"] button.group.border-2,
+[data-theme="light"] a.group.border-2 {
+  border-color: #1a1a1a !important;
+  color: #1a1a1a !important;
+}
+[data-theme="light"] button.group.border-2:hover,
+[data-theme="light"] a.group.border-2:hover {
+  background-color: #1a1a1a !important;
+}
+/* Text & icon inside outline button on hover */
+[data-theme="light"] button.group.border-2 span,
+[data-theme="light"] button.group.border-2 svg,
+[data-theme="light"] a.group.border-2 span,
+[data-theme="light"] a.group.border-2 svg {
+  color: #1a1a1a !important;
+}
+[data-theme="light"] button.group.border-2:hover span,
+[data-theme="light"] button.group.border-2:hover svg,
+[data-theme="light"] a.group.border-2:hover span,
+[data-theme="light"] a.group.border-2:hover svg {
+  color: #f0efe9 !important;
+}
+
+/* ── Card heading yellow-on-hover (preserved in light mode) ──
+   group-hover:text-[#FFDD00] is an inline Tailwind class — the
+   colour is applied by Tailwind's JIT and can't be removed by CSS
+   alone, so we reinforce it with high specificity here.          */
+[data-theme="light"] .group:hover h3.group-hover\:text-\[\#FFDD00\],
+[data-theme="light"] .group:hover h4.group-hover\:text-\[\#FFDD00\] {
+  color: #FFDD00 !important;
+}
+
+/* ── Social icons ────────────────────────────────────────── */
+[data-theme="light"] a.text-\[\#f8f7f9\]\/70 {
+  color: rgba(26, 26, 26, 0.6) !important;
+}
+[data-theme="light"] a.hover\:text-\[\#FFDD00\]:hover,
+[data-theme="light"] a.text-\[\#f8f7f9\]:hover {
+  color: #FFDD00 !important;
+}
+
+/* ── Hero tech icon bubbles ──────────────────────────────── */
+[data-theme="light"] div[style*="background: #1f1f1f"],
+[data-theme="light"] div[style*="background:#1f1f1f"] {
+  background: #f0efe9 !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+[data-theme="light"] footer {
+  background-color: #e5e4de !important;
+  border-top-color: rgba(26, 26, 26, 0.1) !important;
+  color: #1a1a1a !important;
+}
+[data-theme="light"] footer a {
+  color: #1a1a1a !important;
+}
+[data-theme="light"] footer a:hover {
+  color: #FFDD00 !important;
+}
+
+/* ── Hero SVG background glow ────────────────────────────── */
+[data-theme="light"] .opacity-10 ellipse {
+  fill: #1a1a1a;
+}
+
+/* ── Mobile hamburger bars ───────────────────────────────── */
+[data-theme="light"] button.lg\:hidden span {
+  background-color: #1a1a1a !important;
+}
+
+/* ── Text selection ──────────────────────────────────────── */
+[data-theme="light"] ::selection {
+  background-color: #FFDD00;
+  color: #1a1a1a;
+}
+
