@@ -3,19 +3,19 @@ import { motion } from "motion/react";
 export function CertificationsSection() {
   const certifications = [
     {
-      title: "CERTIFIED SCRUM PRODUCT OWNER®",
+      title: "ICTAZ OUTSTANDING STUDENT OF THE YEAR NOMINEE",
+      year: "2025",
+      organization: "ICTAZ Tech Excellence Gala Dinner & Awards"
+    },
+    {
+      title: "ICTAZ SECRETARIAT ASSISTANT",
+      year: "2025",
+      organization: "ICTAZ 16th Annual General Meeting"
+    },
+    {
+      title: "CTF 4TH POSITION",
       year: "2024",
-      organization: "Scrum Alliance®"
-    },
-    {
-      title: "AWS CERTIFIED DEVELOPER",
-      year: "2023",
-      organization: "Amazon Web Services"
-    },
-    {
-      title: "META FRONT-END DEVELOPER",
-      year: "2023",
-      organization: "Meta"
+      organization: "Digital Safe Limited 'Secure Our World' CTF"
     }
   ];
 
@@ -25,9 +25,9 @@ export function CertificationsSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[32px] sm:text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
+          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] text-center mb-12"
         >
-          Achievements
+          Achievements & Recognitions
         </motion.h2>
 
         <div className="space-y-8 relative border-l-2 border-[#f8f7f9]/10 ml-4 md:ml-0 md:pl-8">
