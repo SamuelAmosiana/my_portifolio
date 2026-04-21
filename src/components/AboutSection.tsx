@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Briefcase, GraduationCap, Trophy } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import aboutImage from "../assets/about_me.jpg";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface ExperienceEntryData {
@@ -144,34 +145,66 @@ function ExperienceCategoryCard({
 // ─── Main Section ─────────────────────────────────────────────────────────────
 export function AboutSection() {
   return (
-    <section id="about" className="pt-0 pb-16 relative bg-[#1f1f1f]">
+    <section id="about" className="py-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
+          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] text-[#f8f7f9] mb-12"
         >
           About me
         </motion.h2>
 
-        <div className="max-w-4xl">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6] mb-8"
+        {/* About me — two-column: text left, image right */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left — description text */}
+          <div className="flex flex-col gap-6">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[20px] text-[rgba(248,247,249,0.5)] leading-[1.6] text-justify"
+            > I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I work across the stack using technologies such as React, Node.js, Laravel, Django, and modern cloud infrastructure to create efficient and reliable solutions.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[20px] text-[rgba(248,247,249,0.5)] leading-[1.6] text-justify"
+            >
+              My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
+            </motion.p>
+          </div>
+
+          {/* Right — profile image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex justify-center lg:justify-end"
           >
-            I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I work across the stack using technologies such as React, Node.js, Laravel, Django, and modern cloud infrastructure to create efficient and reliable solutions.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.6]"
-          >
-            My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
-          </motion.p>
+            <motion.div
+              animate={{ y: [0, -14, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" }}
+              style={{
+                width: '320px',
+                height: '320px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.35), 0 0 0 4px rgba(255,221,0,0.85)',
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src={aboutImage}
+                alt="Samuel Amosiana"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </motion.div>
+          </motion.div>
+
         </div>
 
         {/* Education */}
