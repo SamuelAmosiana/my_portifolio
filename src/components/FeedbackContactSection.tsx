@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import { Star, Send, Mail, Phone, MapPin } from "lucide-react";
-import { toast } from "sonner";
+import { motion, AnimatePresence } from "motion/react";
+import { Star, Send, Mail, Phone, MapPin, CheckCircle, XCircle, X, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+
+// ─── EmailJS configuration ───────────────────────────────────────────────────
+// Replace the three placeholders below with your own EmailJS values.
+// Sign up free at https://www.emailjs.com and follow the setup guide in the
+// README or the comment block further down in this file.
+const EMAILJS_SERVICE_ID  = "service_gd40jl9";
+const EMAILJS_TEMPLATE_ID = "template_zncdkwo";
+const EMAILJS_PUBLIC_KEY  = "7aO1AwWGhVN5_VGo_";
+// ─────────────────────────────────────────────────────────────────────────────
+
+type ModalState = "success" | "error" | null;
 
 export function FeedbackContactSection() {
   const [rating, setRating] = useState(0);
@@ -12,12 +23,40 @@ export function FeedbackContactSection() {
     subject: "",
     message: ""
   });
+  const [isSending, setIsSending] = useState(false);
+  const [modal, setModal] = useState<ModalState>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", { ...formData, rating });
-    toast.success("Message sent successfully!");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSending(true);
+
+    const templateParams = {
+      from_name:    formData.name,
+      from_email:   formData.email,
+      reply_to:     formData.email,
+      subject:      `[Portfolio Contact] ${formData.subject} — from ${formData.name}`,
+      message:      formData.message,
+      to_name:      "Samuel",
+      to_email:     "sianamatesamuel@gmail.com",
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setModal("success");
+    } catch (err: any) {
+      console.error("EmailJS error — full details:", err);
+      console.error("Status:", err?.status);
+      console.error("Error text:", err?.text);
+      setModal("error");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -195,10 +234,20 @@ export function FeedbackContactSection() {
 
               <button
                 type="submit"
-                className="w-full bg-[#f8f7f9] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif] py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#f8f7f9]/90 transition-colors"
+                disabled={isSending}
+                className="w-full bg-[#f8f7f9] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif] py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#f8f7f9]/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <Send size={18} />
-                Send Message
+                {isSending ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </motion.div>
@@ -252,6 +301,96 @@ export function FeedbackContactSection() {
           )}
         </motion.div>
       </div>
+
+      {/* ── Animated feedback modal ── */}
+      <AnimatePresence>
+        {modal && (
+          <motion.div
+            key="modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            style={{ backgroundColor: "rgba(10,10,10,0.75)", backdropFilter: "blur(6px)" }}
+            onClick={() => setModal(null)}
+          >
+            <motion.div
+              key="modal-card"
+              initial={{ opacity: 0, scale: 0.85, y: 32 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 32 }}
+              transition={{ type: "spring", stiffness: 280, damping: 24 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-2xl p-10 text-center shadow-2xl"
+              style={{
+                background: modal === "success"
+                  ? "linear-gradient(135deg, #0d2f23 0%, #113326 100%)"
+                  : "linear-gradient(135deg, #2f0d0d 0%, #331111 100%)",
+                border: modal === "success"
+                  ? "1px solid rgba(52,211,153,0.25)"
+                  : "1px solid rgba(239,68,68,0.25)",
+              }}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setModal(null)}
+                className="absolute top-4 right-4 text-white/40 hover:text-white/80 transition-colors"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-5">
+                {modal === "success" ? (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
+                  >
+                    <CheckCircle size={64} className="text-[#34D399]" strokeWidth={1.5} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
+                  >
+                    <XCircle size={64} className="text-[#EF4444]" strokeWidth={1.5} />
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Heading */}
+              <h3
+                className="font-['Poppins:Bold',_sans-serif] text-[26px] text-[#f8f7f9] mb-3"
+              >
+                {modal === "success" ? "Message Sent! 🎉" : "Delivery Failed"}
+              </h3>
+
+              {/* Body */}
+              <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/60 text-[15px] leading-relaxed">
+                {modal === "success"
+                  ? "Thank you for getting in touch! I've received your message and will get back to you within 48 hours."
+                  : "Sorry, something went wrong and your message couldn't be delivered. Please try again or reach me directly at sianamatesamuel@gmail.com."}
+              </p>
+
+              {/* Action button */}
+              <button
+                onClick={() => setModal(null)}
+                className="mt-8 px-8 py-3 rounded-lg font-['Poppins:Bold',_sans-serif] text-[14px] transition-colors"
+                style={{
+                  background: modal === "success" ? "#34D399" : "#EF4444",
+                  color: "#0d1f1a",
+                }}
+              >
+                {modal === "success" ? "Awesome, thanks!" : "Got it"}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
