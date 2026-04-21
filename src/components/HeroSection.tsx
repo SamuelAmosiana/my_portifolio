@@ -58,18 +58,18 @@ export function HeroSection() {
       </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-24 pb-6 lg:pt-20 lg:pb-6">
-        {/* Left content */}
+        {/* Left content — order-2 on mobile so image shows first */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-8 text-center lg:text-left"
+          className="space-y-8 text-center lg:text-left order-2 lg:order-1"
         >
           <div className="space-y-4">
-            <h1 className="font-['Poppins:Bold',_sans-serif] text-[50px] text-[#f8f7f9]">
+            <h1 className="font-['Poppins:Bold',_sans-serif] text-[38px] sm:text-[50px] text-[#f8f7f9]">
               Hi, I'm Samuel
             </h1>
-            <h1 className="font-['Poppins:Bold',_sans-serif] text-[14px] lg:text-[32px] leading-[1.2] text-[#f8f7f9] whitespace-nowrap">
+            <h1 className="font-['Poppins:Bold',_sans-serif] text-[13px] sm:text-[14px] lg:text-[32px] leading-[1.2] text-[#f8f7f9] whitespace-nowrap">
               Systems Developer · DevOps Engineer · Technical Mentor
             </h1>
             <p className="font-['Poppins:Regular',_sans-serif] text-[20px] text-[#f8f7f9]/60 max-w-lg mx-auto lg:mx-0">
@@ -97,12 +97,12 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Right content - Profile image with tech icons */}
+        {/* Right content — order-1 on mobile so image shows first */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="flex justify-center lg:justify-end"
+          className="flex justify-center lg:justify-end order-1 lg:order-2"
         >
           {/* Main image container */}
           <div className="relative">

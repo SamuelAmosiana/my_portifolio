@@ -2028,3 +2028,57 @@ html {
   color: #1a1a1a;
 }
 
+
+/* ---------------------------------------------------------------
+   MOBILE RESPONSIVENESS
+   --------------------------------------------------------------- */
+
+/* Prevent the subtitle causing horizontal scroll on narrow screens */
+@media (max-width: 640px) {
+  .whitespace-nowrap {
+    white-space: normal !important;
+    text-align: center;
+  }
+
+  /* Hero body paragraph slightly smaller on phones */
+  .text-\[20px\] {
+    font-size: 17px !important;
+  }
+
+  /* About section 3-col role cards to single column */
+  [style*='grid-template-columns: repeat(3'] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce section vertical padding on mobile */
+  section.py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+/* Tablet — two-col role cards */
+@media (min-width: 641px) and (max-width: 1023px) {
+  [style*='grid-template-columns: repeat(3'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* -- Mobile drawer panel background --------------------------- */
+.mobile-drawer-bg {
+  background-color: #2a2a2a;
+  border-left: 1px solid rgba(248, 247, 249, 0.08);
+}
+[data-theme="light"] .mobile-drawer-bg {
+  background-color: #f0efe9;
+  border-left: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+/* Drawer nav links in light mode */
+[data-theme="light"] .mobile-drawer-bg ~ * a,
+[data-theme="light"] .fixed.right-0 a {
+  color: #1a1a1a !important;
+}
+[data-theme="light"] .fixed.right-0 button svg {
+  color: #1a1a1a !important;
+}

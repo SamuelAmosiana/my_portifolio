@@ -160,8 +160,8 @@ export function AboutSection() {
         {/* About me — two-column: text left, image right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Left — description text */}
-          <div className="flex flex-col gap-6">
+          {/* Left — description text | order-2 on mobile so image shows first */}
+          <div className="flex flex-col gap-6 order-2 lg:order-1">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -180,19 +180,19 @@ export function AboutSection() {
             </motion.p>
           </div>
 
-          {/* Right — profile image */}
+          {/* Right — profile image | order-1 on mobile so it shows first */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end order-1 lg:order-2"
           >
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" }}
               style={{
-                width: '320px',
-                height: '320px',
+                width: 'clamp(220px, 60vw, 320px)',
+                height: 'clamp(220px, 60vw, 320px)',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 boxShadow: '0 20px 60px rgba(0,0,0,0.35), 0 0 0 4px rgba(255,221,0,0.85)',

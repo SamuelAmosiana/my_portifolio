@@ -144,34 +144,90 @@ export function Navigation() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu — right-side drawer with backdrop */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#1f1f1f] pt-24 px-6 lg:hidden"
-          >
-            <div className="flex flex-col gap-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`text-left font-['Poppins:Bold',_sans-serif] text-[24px] ${
-                    isActive(item.path) ? 'text-[#FFDD00]' : 'text-[#f8f7f9]'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <div className="mt-8 flex items-center gap-6">
-                <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={24} />
-                <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={24} />
-                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={24} />
-                <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={24} />
+          <>
+            {/* Backdrop — semi-transparent, blurred, clicks to close */}
+            <motion.div
+              key="drawer-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-40 lg:hidden"
+              style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(3px)' }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
 
-                {/* Mobile theme toggle */}
+            {/* Drawer panel — slides in from the right */}
+            <motion.div
+              key="drawer-panel"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 32 }}
+              className="fixed top-0 right-0 bottom-0 z-50 lg:hidden flex flex-col"
+              style={{
+                width: 'min(78vw, 320px)',
+                paddingTop: '5rem',
+                paddingLeft: '1.75rem',
+                paddingRight: '1.75rem',
+                paddingBottom: '2.5rem',
+              }}
+            >
+              {/* Drawer background — adapts to theme via CSS */}
+              <div className="absolute inset-0 mobile-drawer-bg rounded-l-2xl shadow-2xl" />
+
+              {/* Close button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+                className="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center nav-theme-toggle text-[#f8f7f9] hover:text-[#FFDD00] transition-colors z-10"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+
+              {/* Nav links */}
+              <div className="relative z-10 flex flex-col gap-2">
+                {navItems.map((item, i) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.07 + 0.1 }}
+                  >
+                    <Link
+                      to={item.path}
+                      className={`block py-3 font-['Poppins:Bold',_sans-serif] text-[22px] border-b transition-colors duration-200 ${
+                        isActive(item.path)
+                          ? 'text-[#FFDD00] border-[#FFDD00]/20'
+                          : 'text-[#f8f7f9] border-[#f8f7f9]/8 hover:text-[#FFDD00]'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Social icons + theme toggle */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="relative z-10 mt-auto flex items-center gap-5 flex-wrap"
+              >
+                <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={22} />
+                <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={22} />
+                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={22} />
+                <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={22} />
+
+                {/* Theme toggle */}
                 <button
                   id="theme-toggle-mobile"
                   onClick={toggleTheme}
@@ -204,9 +260,9 @@ export function Navigation() {
                     )}
                   </AnimatePresence>
                 </button>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
