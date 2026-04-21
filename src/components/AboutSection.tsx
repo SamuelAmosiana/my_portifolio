@@ -10,8 +10,6 @@ interface ExperienceEntry {
 interface ExperienceCategoryProps {
   icon: string;
   categoryLabel: string;
-  accentColor: string;
-  glowColor: string;
   entries: ExperienceEntry[];
   delay?: number;
 }
@@ -82,8 +80,6 @@ function ExperienceEntry({ title, period, description, index }: ExperienceEntry 
 function ExperienceCategoryCard({
   icon,
   categoryLabel,
-  accentColor,
-  glowColor,
   entries,
   delay = 0,
 }: ExperienceCategoryProps) {
@@ -92,57 +88,28 @@ function ExperienceCategoryCard({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay }}
-      className="relative rounded-2xl overflow-hidden group"
-      style={{
-        background: "rgba(255,255,255,0.035)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        backdropFilter: "blur(12px)",
-        boxShadow: `0 4px 32px -8px ${glowColor}`,
-      }}
+      className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group relative"
     >
-      {/* Subtle top accent bar */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px] rounded-t-2xl"
-        style={{ background: accentColor }}
-        aria-hidden="true"
-      />
-
       {/* Card content */}
-      <div className="px-6 pt-7 pb-8">
-        {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <span
-            className="flex items-center justify-center w-10 h-10 rounded-xl text-[20px]"
-            style={{
-              background: `${glowColor}22`,
-              border: `1px solid ${glowColor}44`,
-            }}
-            aria-hidden="true"
-          >
-            {icon}
-          </span>
-          <h4
-            className="font-['Poppins:Bold',_sans-serif] text-[13px] tracking-[0.12em] uppercase"
-            style={{ color: accentColor }}
-          >
-            {categoryLabel}
-          </h4>
-        </div>
-
-        {/* Entries */}
-        <div className="space-y-7">
-          {entries.map((entry, i) => (
-            <ExperienceEntry key={entry.title} {...entry} index={i} />
-          ))}
-        </div>
+      <div className="flex items-center gap-3 mb-6">
+        {/* Icon badge */}
+        <span
+          className="flex items-center justify-center w-10 h-10 rounded-xl text-[20px] bg-[#f8f7f9]/10 border border-[#f8f7f9]/20"
+          aria-hidden="true"
+        >
+          {icon}
+        </span>
+        <h4 className="font-['Poppins:Bold',_sans-serif] text-[13px] tracking-[0.12em] uppercase text-[#f8f7f9]/60 group-hover:text-[#FFDD00] transition-colors">
+          {categoryLabel}
+        </h4>
       </div>
 
-      {/* Hover glow overlay */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-        style={{ background: `radial-gradient(circle at 50% 0%, ${glowColor}12 0%, transparent 70%)` }}
-        aria-hidden="true"
-      />
+      {/* Entries */}
+      <div className="space-y-7">
+        {entries.map((entry, i) => (
+          <ExperienceEntry key={entry.title} {...entry} index={i} />
+        ))}
+      </div>
     </motion.div>
   );
 }
@@ -217,24 +184,18 @@ export function AboutSection() {
             <ExperienceCategoryCard
               icon="💼"
               categoryLabel="Professional"
-              accentColor="#7c9fff"
-              glowColor="#4a6fff"
               entries={professionalExperiences}
               delay={0}
             />
             <ExperienceCategoryCard
               icon="🏫"
               categoryLabel="Teaching"
-              accentColor="#5ed3a0"
-              glowColor="#22c47a"
               entries={teachingExperiences}
               delay={0.12}
             />
             <ExperienceCategoryCard
               icon="🏆"
               categoryLabel="Leadership"
-              accentColor="#f0a05a"
-              glowColor="#e07c24"
               entries={leadershipExperiences}
               delay={0.24}
             />
