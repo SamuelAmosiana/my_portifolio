@@ -1,21 +1,23 @@
 import { motion } from "motion/react";
+import { Briefcase, GraduationCap, Trophy } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-interface ExperienceEntry {
+interface ExperienceEntryData {
   title: string;
   period: string;
   description: string;
 }
 
 interface ExperienceCategoryProps {
-  icon: string;
+  Icon: LucideIcon;
   categoryLabel: string;
-  entries: ExperienceEntry[];
+  entries: ExperienceEntryData[];
   delay?: number;
 }
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
-const professionalExperiences: ExperienceEntry[] = [
+const professionalExperiences: ExperienceEntryData[] = [
   {
     title: "ICT Officer (Senior Engineer)",
     period: "January 2026 — Present",
@@ -30,7 +32,7 @@ const professionalExperiences: ExperienceEntry[] = [
   },
 ];
 
-const teachingExperiences: ExperienceEntry[] = [
+const teachingExperiences: ExperienceEntryData[] = [
   {
     title: "Part-Time Lecturer — ICT Programmes (Diploma & Certificate)",
     period: "January 2026 — Present",
@@ -45,7 +47,7 @@ const teachingExperiences: ExperienceEntry[] = [
   },
 ];
 
-const leadershipExperiences: ExperienceEntry[] = [
+const leadershipExperiences: ExperienceEntryData[] = [
   {
     title: "President – ICT Association Student Chapter",
     period: "July 2024 — July 2025",
@@ -55,36 +57,58 @@ const leadershipExperiences: ExperienceEntry[] = [
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-function ExperienceEntry({ title, period, description, index }: ExperienceEntry & { index: number }) {
+
+/**
+ * Single experience entry — bullet format identical to CertificationsSection:
+ *   • outer wrapper has border-l-2 on the parent
+ *   • relative pl-8 on every entry
+ *   • 12×12 yellow glow dot at absolute left-[-5px] top-[8px]
+ *   • bold title → muted period → body description
+ */
+function ExperienceItem({
+  title,
+  period,
+  description,
+  index,
+}: ExperienceEntryData & { index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -16 }}
+      initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.45, delay: 0.08 * index }}
-      className="relative pl-5 border-l border-white/10 last:border-transparent"
+      transition={{ delay: index * 0.1 }}
+      className="relative pl-8"
     >
-      {/* Timeline dot */}
-      <span
-        className="absolute -left-[5px] top-[6px] w-[9px] h-[9px] rounded-full border-2 border-white/20 bg-[#1f1f1f]"
+      {/* Yellow glow dot — exact match to CertificationsSection */}
+      <div
+        className="absolute left-[-5px] top-[8px] w-[12px] h-[12px] bg-[#FFDD00] rounded-full shadow-[0_0_10px_rgba(255,221,0,0.5)]"
         aria-hidden="true"
       />
-      <h5
-        className="font-['Poppins:SemiBold',_sans-serif] text-[16px] md:text-[18px] text-[#f8f7f9] leading-snug mb-1"
-      >
+
+      {/* Bold job title */}
+      <h5 className="font-['Poppins:ExtraBold',_sans-serif] text-[15px] md:text-[17px] text-[#f8f7f9] mb-1 leading-snug">
         {title}
       </h5>
-      <p className="font-['Poppins:ExtraLight',_sans-serif] text-[13px] md:text-[14px] text-[rgba(248,247,249,0.45)] mb-2 tracking-wide">
+
+      {/* Period */}
+      <p className="font-['Poppins:Regular',_sans-serif] text-[13px] md:text-[14px] text-[#f8f7f9]/60 mb-1">
         {period}
       </p>
-      <p className="font-['Poppins:Regular',_sans-serif] text-[14px] md:text-[16px] text-[rgba(248,247,249,0.55)] leading-[1.65]">
+
+      {/* Description */}
+      <p className="font-['Poppins:Medium',_sans-serif] text-[13px] md:text-[14px] text-[#f8f7f9]/40 leading-[1.65]">
         {description}
       </p>
     </motion.div>
   );
 }
 
+/**
+ * Category card — icon badge matches AboutPreview exactly:
+ *   w-[54px] h-[54px] · rounded-xl · bg-[#f8f7f9]/10 border border-[#f8f7f9]/20
+ *   icon: size={26} strokeWidth={2} text-[#f8f7f9]
+ */
 function ExperienceCategoryCard({
-  icon,
+  Icon,
   categoryLabel,
   entries,
   delay = 0,
@@ -94,31 +118,28 @@ function ExperienceCategoryCard({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay }}
-      className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group relative"
+      className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group flex flex-col gap-5"
     >
-      {/* Card header — centered */}
-      <div className="flex flex-col items-center gap-2 mb-6 text-center">
-        {/* Icon badge */}
-        <span
-          className="flex items-center justify-center w-10 h-10 rounded-xl text-[20px] bg-[#f8f7f9]/10 border border-[#f8f7f9]/20"
-          aria-hidden="true"
-        >
-          {icon}
-        </span>
-        <h4 className="font-['Poppins:Bold',_sans-serif] text-[13px] tracking-[0.12em] uppercase text-[#f8f7f9]/60 group-hover:text-[#FFDD00] transition-colors">
-          {categoryLabel}
-        </h4>
+      {/* Icon badge — identical to AboutPreview */}
+      <div className="flex items-center justify-center w-[54px] h-[54px] rounded-xl bg-[#f8f7f9]/10 border border-[#f8f7f9]/20">
+        <Icon size={26} strokeWidth={2} className="text-[#f8f7f9]" />
       </div>
 
-      {/* Entries */}
-      <div className="space-y-7">
+      {/* Category title — identical weight/size to AboutPreview role label */}
+      <h4 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors">
+        {categoryLabel}
+      </h4>
+
+      {/* Entry list — outer border-l-2 mirrors CertificationsSection wrapper */}
+      <div className="space-y-8 relative border-l-2 border-[#f8f7f9]/10">
         {entries.map((entry, i) => (
-          <ExperienceEntry key={entry.title} {...entry} index={i} />
+          <ExperienceItem key={entry.title} {...entry} index={i} />
         ))}
       </div>
     </motion.div>
   );
 }
+
 
 // ─── Main Section ─────────────────────────────────────────────────────────────
 export function AboutSection() {
@@ -188,19 +209,19 @@ export function AboutSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             <ExperienceCategoryCard
-              icon="💼"
+              Icon={Briefcase}
               categoryLabel="Professional"
               entries={professionalExperiences}
               delay={0}
             />
             <ExperienceCategoryCard
-              icon="🏫"
+              Icon={GraduationCap}
               categoryLabel="Teaching"
               entries={teachingExperiences}
               delay={0.12}
             />
             <ExperienceCategoryCard
-              icon="🏆"
+              Icon={Trophy}
               categoryLabel="Leadership"
               entries={leadershipExperiences}
               delay={0.24}
