@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Instagram, Twitter, Linkedin, Github } from 'lucide-react';
+import { Github, Linkedin, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+// Official X (formerly Twitter) logo as SVG
+const XIcon = ({ size = 24 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -78,10 +85,10 @@ export function Navigation() {
             <div className="hidden lg:flex items-center gap-6">
               <div className="h-6 w-px bg-[#f8f7f9]/20" />
               <div className="flex gap-4">
-                <SocialIcon Icon={Instagram} href="#" />
-                <SocialIcon Icon={Twitter} href="#" />
-                <SocialIcon Icon={Linkedin} href="#" />
-                <SocialIcon Icon={Github} href="#" />
+                <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" />
+                <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" />
+                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" />
+                <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" />
               </div>
             </div>
 
@@ -123,10 +130,10 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="mt-8 flex gap-6">
-                <SocialIcon Icon={Instagram} href="#" size={24} />
-                <SocialIcon Icon={Twitter} href="#" size={24} />
-                <SocialIcon Icon={Linkedin} href="#" size={24} />
-                <SocialIcon Icon={Github} href="#" size={24} />
+                <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={24} />
+                <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={24} />
+                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={24} />
+                <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={24} />
               </div>
             </div>
           </motion.div>
@@ -144,7 +151,7 @@ function SocialIcon({ Icon, href, size = 20 }: { Icon: any; href: string; size?:
       rel="noopener noreferrer"
       className="text-[#f8f7f9]/70 hover:text-[#FFDD00] transition-colors duration-200"
     >
-      <Icon size={size} />
+      {Icon ? <Icon size={size} /> : <XIcon size={size} />}
     </a>
   );
 }
