@@ -7,22 +7,22 @@ const skills = {
     { name: "TypeScript", level: 80 },
     { name: "Java", level: 75 },
     { name: "SQL", level: 75 },
-    { name: "Python", level: 70 },
-    
+    { name: "Python", level: 75 },
+
   ],
   "Frameworks & Libraries": [
     { name: "Laravel", level: 90 },
     { name: "React", level: 85 },
     { name: "Bootstrap", level: 85 },
-    { name: "Tailwind CSS", level: 95 },
-    { name: "Node.js", level: 80 },
+    { name: "Tailwind CSS", level: 80 },
+    { name: "Flask", level: 75 },
   ],
   "Tools & DevOps": [
     { name: "Git", level: 85 },
     { name: "Figma", level: 80 },
-    { name: "Docker", level: 70 },
-    { name: "AWS", level: 65 },
-    
+    { name: "Docker", level: 80 },
+    { name: "AWS", level: 75 },
+
   ],
 };
 
@@ -30,7 +30,7 @@ export function SkillsSection() {
   return (
     <section id="skills" className="py-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -38,10 +38,10 @@ export function SkillsSection() {
         >
           Skills & Expertise
         </motion.h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {Object.entries(skills).map(([category, items], categoryIndex) => (
-            <motion.div 
+            <motion.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export function SkillsSection() {
                       </span>
                     </div>
                     <div className="h-2 w-full bg-[#f8f7f9]/10 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: 0.2 }}

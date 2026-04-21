@@ -176,7 +176,7 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[20px] text-[rgba(248,247,249,0.5)] leading-[1.6] text-justify"
             >
-              My journey in technology is driven by a passion for solving complex problems and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
+              My journey in technology is driven by a passion for solving complex problems, automation and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
             </motion.p>
           </div>
 
@@ -222,7 +222,7 @@ export function AboutSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             <ExperienceCategoryCard
               Icon={Briefcase}
-              categoryLabel="Professional"
+              categoryLabel="Technical"
               entries={professionalExperiences}
               delay={0}
             />
@@ -234,7 +234,7 @@ export function AboutSection() {
             />
             <ExperienceCategoryCard
               Icon={Trophy}
-              categoryLabel="Leadership"
+              categoryLabel="Leadership & Mentorship"
               entries={leadershipExperiences}
               delay={0.24}
             />

@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const featuredProjects = [
@@ -71,17 +71,6 @@ export function FeaturedProjects() {
               </div>
 
               <div className="flex gap-4">
-                {project.links.github && (
-                  <a
-                    href={project.links.github}
-                    className="flex items-center gap-2 text-[#f8f7f9] hover:text-[#FFDD00] transition-colors"
-                  >
-                    <Github size={20} />
-                    <span className="text-sm font-['Poppins:Medium',_sans-serif]">
-                      Code
-                    </span>
-                  </a>
-                )}
                 {project.links.demo && (
                   <a
                     href={project.links.demo}
@@ -97,6 +86,28 @@ export function FeaturedProjects() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA button — centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-16 flex justify-center"
+        >
+          <button
+            onClick={() => navigate("/projects")}
+            className="group flex items-center gap-3 border-2 border-[#f8f7f9] px-8 py-4 rounded-2xl transition-all duration-300 hover:bg-[#f8f7f9]"
+          >
+            <span className="font-['Poppins:Bold',_sans-serif] text-[18px] text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300">
+              View More
+            </span>
+            <ArrowRight
+              size={20}
+              className="text-[#f8f7f9] group-hover:text-[#1f1f1f] transition-colors duration-300 group-hover:translate-x-1"
+            />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
