@@ -11,25 +11,25 @@ export function ProjectsSection() {
       links: { github: "", demo: "https://srms.lsc.edu.zm/" }
     },
     {
-      title: "Grocery Delivery Platform",
+      title: "Study In Zambia (SIZA)",
       period: "2024",
-      description: "Full-stack scalable grocery delivery platform. Implemented real-time order tracking, inventory management, and secure payment gateway integration.",
-      tech: ["Next.js", "PostgreSQL", "Stripe", "Redis"],
-      links: { github: "#", demo: "#" }
+      description: "Study In Zambia (SIZA) is an open platform that connects various public and private universities and enable both domestic and foreign students to get in touch and apply for their studies to a desired institution.",
+      tech: ["PHP", "HTML", "CSS"],
+      links: { github: "", demo: "https://samuelamosiana.github.io/siza/" }
     },
     {
-      title: "IPL Analytics Dashboard",
-      period: "2023",
-      description: "Python-based data analysis project to identify the best cricket team compositions. Utilized pandas and scikit-learn for predictive modeling and visualization.",
-      tech: ["Python", "Pandas", "Scikit-learn", "Streamlit"],
-      links: { github: "#", demo: null }
+      title: "Smart Attendance System",
+      period: "2026",
+      description: "A Smart Attendance System Register that uses facial detection to automate attendance tracking and registration processes.",
+      tech: ["Python", "Flask", "HTML", "CSS", "JavaScript"],
+      links: { github: "", demo: "https://smart-attendance-system-sb9n.onrender.com" }
     },
     {
-      title: "Financial Health Analyzer",
-      period: "2023",
-      description: "Analyzed 5 years of financial statements to identify trends and provide actionable insights. Built a dashboard for visualizing key financial metrics.",
-      tech: ["Python", "Tableau", "SQL"],
-      links: { github: "#", demo: null }
+      title: "Lusaka South University College Website",
+      period: "2025",
+      description: "The official institutional website for Lusaka South University College, featuring programme listings, admissions information, news, and a fully responsive public-facing interface.",
+      tech: ["PHP", "Laravel", "Blade", "MySQL", "CSS"],
+      links: { github: "", demo: "https://lsc.edu.zm" }
     }
   ];
 
@@ -39,7 +39,7 @@ export function ProjectsSection() {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
+          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] text-center mb-12"
         >
           My Projects
         </motion.h2>
