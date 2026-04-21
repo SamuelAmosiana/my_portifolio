@@ -126,7 +126,7 @@ function ExperienceCategoryCard({
       </div>
 
       {/* Category title — identical weight/size to AboutPreview role label */}
-      <h4 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors">
+      <h4 className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors text-center">
         {categoryLabel}
       </h4>
 
@@ -202,9 +202,9 @@ export function AboutSection() {
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-10 text-center"
+            className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] text-center mb-12"
           >
-            EXPERIENCE
+            Experience
           </motion.h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
