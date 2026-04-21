@@ -248,22 +248,73 @@ export function AboutSection() {
           <motion.h3
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] mb-8"
+            className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] text-center mb-12"
           >
-            EDUCATION
+            Education
           </motion.h3>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
-            <h4 className="font-['Poppins:ExtraBold',_sans-serif] text-[20px] md:text-[24px] text-[rgba(248,247,249,0.5)] mb-2">
-              Chalimbana University
-            </h4>
-            <p className="font-['Poppins:Medium',_sans-serif] text-[18px] md:text-[24px] text-[rgba(248,247,249,0.5)] leading-[1.5]">
-              Bachelor of Information and Communication Technology with Education.
-            </p>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* University Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0 }}
+              className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group flex flex-col gap-4"
+            >
+              {/* Duration badge */}
+              <div className="flex justify-center">
+                <span className="text-sm font-bold text-[#f8f7f9]/80 bg-[#f8f7f9]/10 border border-[#f8f7f9]/20 px-4 py-1 rounded-full">
+                  2021 — 2025
+                </span>
+              </div>
+
+              {/* Institution */}
+              <h4 className="font-['Poppins:Bold',_sans-serif] text-[20px] md:text-[22px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors leading-snug">
+                Chalimbana University
+              </h4>
+
+              {/* Qualification */}
+              <p className="font-['Poppins:Medium',_sans-serif] text-[15px] md:text-[16px] text-[#f8f7f9]/70 leading-snug">
+                Bachelor of Information and Communication Technology with Education
+              </p>
+
+              {/* Description */}
+              <p className="font-['Poppins:Regular',_sans-serif] text-[14px] text-[#f8f7f9]/40 leading-[1.65]">
+                Majored in ICTs with Mathematics.
+              </p>
+            </motion.div>
+
+            {/* Secondary School Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.12 }}
+              className="bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-2xl p-8 hover:bg-[#f8f7f9]/10 transition-colors group flex flex-col gap-4"
+            >
+              {/* Duration badge */}
+              <div className="flex justify-center">
+                <span className="text-sm font-bold text-[#f8f7f9]/80 bg-[#f8f7f9]/10 border border-[#f8f7f9]/20 px-4 py-1 rounded-full">
+                  2016 — 2018
+                </span>
+              </div>
+
+              {/* Institution */}
+              <h4 className="font-['Poppins:Bold',_sans-serif] text-[20px] md:text-[22px] text-[#f8f7f9] group-hover:text-[#FFDD00] transition-colors leading-snug">
+                Jembo Secondary School
+              </h4>
+
+              {/* Qualification */}
+              <p className="font-['Poppins:Medium',_sans-serif] text-[15px] md:text-[16px] text-[#f8f7f9]/70 leading-snug">
+                Grade 12 Certificate
+              </p>
+
+              {/* Description */}
+              <p className="font-['Poppins:Regular',_sans-serif] text-[14px] text-[#f8f7f9]/40 leading-[1.65]">
+                Completed Senior Secondary — 12 Points.
+              </p>
+            </motion.div>
+
+          </div>
         </div>
       </div>
     </section>
