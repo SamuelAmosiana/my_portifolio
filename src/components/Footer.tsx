@@ -17,7 +17,7 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="bg-[#1a1a1a] border-t border-[#f8f7f9]/10">
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", alignItems: "flex-start", gap: "1.5rem", maxWidth: "80rem", margin: "0 auto", padding: "2rem 2.5rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "2rem", maxWidth: "80rem", margin: "0 auto", padding: "2rem 2.5rem" }}>
 
         {/* Col 1 — Name + role (left-aligned) */}
         <div className="flex flex-col gap-1.5">
@@ -30,9 +30,9 @@ export function Footer() {
         </div>
 
         {/* Col 2 — Copyright + social icons (centred) */}
-        <div className="flex flex-col items-center text-center" style={{ gap: "48px" }}>
+        <div className="flex flex-col items-center text-center gap-8">
           <div className="flex flex-col gap-0.5">
-            <p className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/60 leading-snug">
+            <p className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9]/80 leading-snug">
               © {new Date().getFullYear()} Samuel Sianamate
             </p>
             <p className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/60 leading-snug">
@@ -61,7 +61,7 @@ export function Footer() {
         <div className="flex flex-col items-end" style={{ gap: "12px" }}>
           <a
             href="mailto:sianamatesamuel@gmail.com"
-            className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/60 hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
+            className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9]/80 hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
           >
             sianamatesamuel@gmail.com
           </a>
