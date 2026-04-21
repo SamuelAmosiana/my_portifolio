@@ -34,7 +34,7 @@ export function SkillsSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[96px] text-[#f8f7f9] mb-12"
+          className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] font-bold text-[#f8f7f9] mb-12 text-center"
         >
           Skills & Expertise
         </motion.h2>
