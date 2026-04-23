@@ -33,7 +33,7 @@ export function HeroSection() {
   ];
 
   return (
-    <section id="home" className="h-auto relative z-10 flex items-center justify-center overflow-hidden">
+    <section id="home" className="h-auto relative z-10 flex items-center justify-center pb-20">
       {/* Background blur effect */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-[905px] aspect-square lg:h-[897px] lg:aspect-auto">
@@ -57,7 +57,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-24 pb-6 lg:pt-20 lg:pb-6">
+      <div className="relative w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center pb-6">
         {/* Left content — order-2 on mobile so image shows first */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -103,6 +103,7 @@ export function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           className="flex justify-center lg:justify-end order-1 lg:order-2"
+          style={{ marginTop: '80px' }}
         >
           {/* Main image container */}
           <div className="relative">

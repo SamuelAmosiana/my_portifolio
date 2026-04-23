@@ -36,7 +36,7 @@ export function AboutPreview() {
   const navigate = useNavigate();
 
   return (
-    <section className="pt-32 pb-20 relative bg-[#1f1f1f]">
+    <section className="pt-20 pb-20 relative bg-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Section heading — centered */}
