@@ -66,7 +66,7 @@ export function HeroSection() {
           className="space-y-8 text-center lg:text-left order-2 lg:order-1"
         >
           <div className="space-y-4">
-            <h1 className="font-['Poppins:Bold',_sans-serif] text-[38px] sm:text-[50px] text-[#f8f7f9]">
+            <h1 className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px] text-[#f8f7f9]">
               Hi, I'm Samuel
             </h1>
             <h1 className="font-['Poppins:Bold',_sans-serif] text-[13px] sm:text-[14px] lg:text-[32px] leading-[1.2] text-[#f8f7f9] whitespace-nowrap">
