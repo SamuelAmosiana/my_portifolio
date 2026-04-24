@@ -1,4 +1,5 @@
 import { Github, Linkedin, Facebook } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 // Official X (formerly Twitter) logo as SVG
 const XIcon = ({ size = 24 }: { size?: number }) => (
@@ -15,16 +16,27 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
+  const t = {
+    bg: isDark ? "#1a1a1a" : "#f8f7f9",
+    fg: isDark ? "#f8f7f9" : "#1a1a1a",
+    fgMuted: isDark ? "rgba(248,247,249,0.5)" : "rgba(26,26,26,0.6)",
+    border: isDark ? "rgba(248,247,249,0.1)" : "rgba(26,26,26,0.1)",
+    iconBg: isDark ? "rgba(248,247,249,0.08)" : "rgba(26,26,26,0.05)",
+  };
+
   return (
-    <footer className="bg-[#1a1a1a] border-t border-[#f8f7f9]/10">
-      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "2rem", maxWidth: "80rem", margin: "0 auto", padding: "2rem 2.5rem" }}>
+    <footer style={{ background: t.bg, borderColor: t.border }} className="border-t">
+      <div style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", alignItems: "center", gap: "2rem", maxWidth: "80rem", margin: "0 auto", padding: "4rem 2.5rem" }}>
 
         {/* Col 1 — Name + role (left-aligned) */}
         <div className="flex flex-col gap-1.5">
-          <p className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9] leading-tight">
+          <p style={{ color: t.fg }} className="font-['Poppins:Bold',_sans-serif] text-[20px] leading-tight">
             Samuel Sianamate
           </p>
-          <p className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/50 leading-tight">
+          <p style={{ color: t.fgMuted }} className="font-['Poppins:Regular',_sans-serif] text-[13px] leading-tight">
             Systems Developer @ LSUC
           </p>
         </div>
@@ -32,10 +44,10 @@ export function Footer() {
         {/* Col 2 — Copyright + social icons (centred) */}
         <div className="flex flex-col items-center text-center gap-8">
           <div className="flex flex-col gap-0.5">
-            <p className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9]/80 leading-snug">
+            <p style={{ color: t.fg }} className="font-['Poppins:Bold',_sans-serif] text-[20px] opacity-80 leading-snug">
               © {new Date().getFullYear()} Samuel Sianamate
             </p>
-            <p className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/60 leading-snug">
+            <p style={{ color: t.fgMuted }} className="font-['Poppins:Regular',_sans-serif] text-[13px] leading-snug">
               All Rights Reserved
             </p>
           </div>
@@ -49,7 +61,8 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex items-center justify-center w-14 h-14 rounded-full bg-[#f8f7f9]/8 border border-[#f8f7f9]/15 text-[#f8f7f9]/60 hover:text-[#FFDD00] hover:border-[#FFDD00]/50 transition-all duration-200"
+                style={{ background: t.iconBg, borderColor: t.border, color: t.fgMuted }}
+                className="flex items-center justify-center w-14 h-14 rounded-full border hover:text-[#FFDD00] hover:border-[#FFDD00]/50 transition-all duration-200"
               >
                 {Icon ? <Icon size={24} /> : <XIcon size={24} />}
               </a>
@@ -61,13 +74,15 @@ export function Footer() {
         <div className="flex flex-col items-end" style={{ gap: "12px" }}>
           <a
             href="mailto:sianamatesamuel@gmail.com"
-            className="font-['Poppins:Bold',_sans-serif] text-[20px] text-[#f8f7f9]/80 hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
+            style={{ color: t.fg }}
+            className="font-['Poppins:Bold',_sans-serif] text-[20px] opacity-80 hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
           >
             sianamatesamuel@gmail.com
           </a>
           <a
             href="tel:+260979667723"
-            className="font-['Poppins:Regular',_sans-serif] text-[13px] text-[#f8f7f9]/60 hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
+            style={{ color: t.fgMuted }}
+            className="font-['Poppins:Regular',_sans-serif] text-[13px] hover:text-[#FFDD00] transition-colors duration-200 whitespace-nowrap"
           >
             +260 979 667 723
           </a>

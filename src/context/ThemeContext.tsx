@@ -8,7 +8,7 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
 });
 
@@ -17,8 +17,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // 1. Check localStorage first (respects user's explicit choice)
     const stored = localStorage.getItem("portfolio-theme") as Theme | null;
     if (stored === "dark" || stored === "light") return stored;
-    // 2. Default to dark mode always (ignore OS preference)
-    return "dark";
+    // 2. Default to light mode
+    return "light";
   });
 
   // Apply / remove the data-theme attribute on <html>

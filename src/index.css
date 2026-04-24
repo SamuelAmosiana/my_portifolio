@@ -2082,3 +2082,11 @@ html {
 [data-theme="light"] .fixed.right-0 button svg {
   color: #1a1a1a !important;
 }
+
+/* Light mode background overrides for hardcoded sections */
+[data-theme='light'] .bg-[#1f1f1f] { background-color: #ffffff !important; }
+[data-theme='light'] .bg-[#1f1f1f]/50 { background-color: rgba(26, 26, 26, 0.05) !important; }
+[data-theme='light'] .bg-[#f8f7f9]/5 { background-color: rgba(26, 26, 26, 0.04) !important; }
+[data-theme='light'] .bg-[#f8f7f9]/10 { background-color: rgba(26, 26, 26, 0.08) !important; }
+[data-theme='light'] .border-[#f8f7f9]/10 { border-color: rgba(26, 26, 26, 0.1) !important; }
+[data-theme='light'] .border-[#f8f7f9]/20 { border-color: rgba(26, 26, 26, 0.15) !important; }

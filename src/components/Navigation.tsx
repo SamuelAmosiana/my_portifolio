@@ -46,7 +46,9 @@ export function Navigation() {
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#1f1f1f]/90 backdrop-blur-md border-b border-white/10 py-4 shadow-lg'
+            ? theme === 'dark'
+              ? 'bg-[#1f1f1f]/90 backdrop-blur-md border-b border-white/10 py-4 shadow-lg'
+              : 'bg-white/90 backdrop-blur-md border-b border-black/5 py-4 shadow-sm'
             : 'bg-transparent py-6'
         }`}
       >
@@ -170,30 +172,33 @@ export function Navigation() {
               transition={{ type: 'spring', stiffness: 300, damping: 32 }}
               className="fixed top-0 right-0 bottom-0 z-50 lg:hidden flex flex-col"
               style={{
-                width: 'min(78vw, 320px)',
-                paddingTop: '5rem',
-                paddingLeft: '1.75rem',
-                paddingRight: '1.75rem',
+                width: 'min(85vw, 360px)',
+                paddingTop: '7rem',
+                paddingLeft: '2rem',
+                paddingRight: '2rem',
                 paddingBottom: '2.5rem',
               }}
             >
               {/* Drawer background — adapts to theme via CSS */}
-              <div className="absolute inset-0 mobile-drawer-bg rounded-l-2xl shadow-2xl" />
+              <div className="absolute inset-0 mobile-drawer-bg rounded-l-3xl shadow-2xl" />
 
-              {/* Close button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-                className="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center nav-theme-toggle text-[#f8f7f9] hover:text-[#FFDD00] transition-colors z-10"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
+              {/* Top Bar with Menu Label and Close Button */}
+              <div className="absolute top-0 left-0 right-0 h-24 flex items-center justify-between px-8 z-10">
+                <span className="text-[#f8f7f9]/30 text-xs font-['Poppins:Bold',_sans-serif] uppercase tracking-[0.2em]">Menu</span>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="Close menu"
+                  className="w-10 h-10 rounded-full flex items-center justify-center nav-theme-toggle text-[#f8f7f9] hover:text-[#FFDD00] transition-colors bg-white/5"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
 
               {/* Nav links */}
-              <div className="relative z-10 flex flex-col gap-2">
+              <div className="relative z-10 flex flex-col gap-1">
                 {navItems.map((item, i) => (
                   <motion.div
                     key={item.path}
@@ -203,64 +208,84 @@ export function Navigation() {
                   >
                     <Link
                       to={item.path}
-                      className={`block py-3 font-['Poppins:Bold',_sans-serif] text-[22px] border-b transition-colors duration-200 ${
+                      className={`block py-4 font-['Poppins:Bold',_sans-serif] text-[28px] transition-colors duration-200 ${
                         isActive(item.path)
-                          ? 'text-[#FFDD00] border-[#FFDD00]/20'
-                          : 'text-[#f8f7f9] border-[#f8f7f9]/8 hover:text-[#FFDD00]'
+                          ? 'text-[#FFDD00]'
+                          : 'text-[#f8f7f9] hover:text-[#FFDD00]'
                       }`}
                     >
                       {item.label}
+                      {isActive(item.path) && (
+                        <motion.div 
+                          layoutId="activeNavMobile"
+                          className="h-1 w-8 bg-[#FFDD00] mt-1 rounded-full" 
+                        />
+                      )}
                     </Link>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Social icons + theme toggle */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="relative z-10 mt-auto flex items-center gap-5 flex-wrap"
-              >
-                <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={22} />
-                <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={22} />
-                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={22} />
-                <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={22} />
-
-                {/* Theme toggle */}
-                <button
-                  id="theme-toggle-mobile"
-                  onClick={toggleTheme}
-                  aria-label="Toggle theme"
-                  className="relative w-10 h-10 rounded-full flex items-center justify-center nav-theme-toggle transition-all duration-300"
+              {/* Bottom Section: Theme & Socials */}
+              <div className="relative z-10 mt-auto pt-8 border-t border-white/10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex flex-col gap-8"
                 >
-                  <AnimatePresence mode="wait" initial={false}>
-                    {theme === 'dark' ? (
-                      <motion.span
-                        key="sun-mobile"
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute"
-                      >
-                        <Sun size={22} className="text-[#FFDD00]" />
-                      </motion.span>
-                    ) : (
-                      <motion.span
-                        key="moon-mobile"
-                        initial={{ rotate: 90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: -90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute"
-                      >
-                        <Moon size={22} className="text-[#6366f1]" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </button>
-              </motion.div>
+                  {/* Theme toggle section */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-[#f8f7f9] font-['Poppins:Medium',_sans-serif] text-sm">Appearance</span>
+                      <span className="text-[#f8f7f9]/40 text-xs">{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
+                    </div>
+                    <button
+                      id="theme-toggle-mobile"
+                      onClick={toggleTheme}
+                      aria-label="Toggle theme"
+                      className="relative w-12 h-12 rounded-2xl flex items-center justify-center nav-theme-toggle transition-all duration-300 bg-white/5 border border-white/5"
+                    >
+                      <AnimatePresence mode="wait" initial={false}>
+                        {theme === 'dark' ? (
+                          <motion.span
+                            key="sun-mobile"
+                            initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                            exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute"
+                          >
+                            <Sun size={20} className="text-[#FFDD00]" />
+                          </motion.span>
+                        ) : (
+                          <motion.span
+                            key="moon-mobile"
+                            initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                            animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                            exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute"
+                          >
+                            <Moon size={20} className="text-[#6366f1]" />
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  </div>
+
+                  {/* Social icons section */}
+                  <div className="flex flex-col gap-4">
+                    <span className="text-[#f8f7f9]/30 text-[10px] font-['Poppins:Bold',_sans-serif] uppercase tracking-[0.2em]">Connect</span>
+                    <div className="flex items-center gap-6">
+                      <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={24} />
+                      <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={24} />
+                      <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={24} />
+                      <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={24} />
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
           </>
         )}
