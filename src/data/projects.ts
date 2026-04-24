@@ -59,7 +59,7 @@ export const projects: Project[] = [
       "Study In Zambia (SIZA) is an open platform that connects various public and private universities and enables both domestic and foreign students to get in touch and apply for their studies to a desired institution.",
     longDescription:
       "SIZA (Study In Zambia) is a centralised higher-education discovery platform designed to bridge the information gap between prospective students and Zambian universities. Students can browse institutions, compare programmes, and submit initial interest applications — all from one place. The platform is intentionally lightweight and fast-loading to serve users on lower-bandwidth connections across the country.",
-    tech: ["PHP", "HTML", "CSS"],
+    tech: ["Vue", "PHP", "HTML", "JavaScript", "Dockerfile", "Blade"],
     features: [
       "Institution directory with programme listings",
       "Student application and enquiry submission",
