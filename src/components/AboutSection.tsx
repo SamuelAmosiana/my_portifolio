@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { Briefcase, GraduationCap, Trophy } from "lucide-react";
+import { Briefcase, GraduationCap, Trophy, Download } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import aboutImage from "../assets/about_me.jpg";
+import cvFile from "../assets/Samuel_Sianamate_CV.pdf";
 import { SkillsSection } from "./SkillsSection";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -178,6 +179,33 @@ export function AboutSection() {
             >
               My journey in technology is driven by a passion for solving complex problems, automation and building systems that create real-world impact. I bring experience from both startup and enterprise environments, allowing me to balance speed, scalability, and business value in every solution I develop. Beyond building systems, I am committed to continuous learning and mentoring others, breaking down complex concepts and empowering the next generation of developers.
             </motion.p>
+
+            {/* ── Download CV button ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="w-fit"
+            >
+              <a
+                href={cvFile}
+                download="Samuel_Sianamate_CV.pdf"
+                className="inline-flex flex-row items-center justify-center gap-3 px-8 py-4 rounded-2xl
+                           bg-[#FFDD00] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif]
+                           text-[18px] font-bold whitespace-nowrap
+                           shadow-[0_4px_24px_rgba(255,221,0,0.35)]
+                           hover:bg-[#ffe833] hover:shadow-[0_6px_32px_rgba(255,221,0,0.55)]
+                           active:scale-95 transition-all duration-200 group"
+              >
+                <Download
+                  size={22}
+                  strokeWidth={2.5}
+                  style={{ display: 'inline', flexShrink: 0 }}
+                  className="group-hover:animate-bounce"
+                />
+                Download CV
+              </a>
+            </motion.div>
           </div>
 
           {/* Right — profile image | order-1 on mobile so it shows first */}
