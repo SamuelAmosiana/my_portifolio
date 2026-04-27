@@ -169,7 +169,7 @@ export function AboutSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-['Poppins:Regular',_sans-serif] text-[18px] md:text-[20px] text-[rgba(248,247,249,0.5)] leading-[1.6] text-justify"
             >
-              I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I am currently working as an ICT Officer (Senior Engineer) at Lusaka South University College. In this role, I manage and optimize IT infrastructure, ensuring system reliability, security, and scalability.
+              My name is Samuel Sianamate, I am a Systems Developer and DevOps Engineer focused on designing, building, and delivering scalable, production-ready software systems. With a strong foundation in full-stack development, I am currently working as an ICT Officer (Senior Engineer) at Lusaka South University College. In this role, I manage and optimize IT infrastructure, ensuring system reliability, security, and scalability.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

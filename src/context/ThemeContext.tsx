@@ -14,10 +14,12 @@ const ThemeContext = createContext<ThemeContextValue>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    // 1. Check localStorage first (respects user's explicit choice)
+    // 1. Check localStorage — only honour an explicit user toggle
     const stored = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (stored === "dark" || stored === "light") return stored;
-    // 2. Default to light mode
+    // 2. If the user has never made a choice, boot into light mode
+    if (stored === "light" || stored === "dark") return stored;
+    // 3. Write the default so subsequent visits are consistent
+    localStorage.setItem("portfolio-theme", "light");
     return "light";
   });
 
