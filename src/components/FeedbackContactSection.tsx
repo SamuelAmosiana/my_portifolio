@@ -42,12 +42,12 @@ export function FeedbackContactSection() {
   const isLight = theme === "light";
 
   // ── Theme-aware modal tokens ──────────────────────────────────────────────
-  const modalBg        = isLight ? "#111111" : "#ffffff";
-  const modalText      = isLight ? "#ffffff" : "#111111";
-  const modalSubText   = isLight ? "rgba(255,255,255,0.72)" : "rgba(0,0,0,0.65)";
-  const modalBorder    = isLight ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.10)";
-  const modalClose     = isLight ? "rgba(255,255,255,0.55)" : "rgba(0,0,0,0.45)";
-  const modalCloseHov  = isLight ? "#ffffff" : "#000000";
+  const modalBg = isLight ? "#111111" : "#ffffff";
+  const modalText = isLight ? "#ffffff" : "#111111";
+  const modalSubText = isLight ? "rgba(255,255,255,0.72)" : "rgba(0,0,0,0.65)";
+  const modalBorder = isLight ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.10)";
+  const modalClose = isLight ? "rgba(255,255,255,0.55)" : "rgba(0,0,0,0.45)";
+  const modalCloseHov = isLight ? "#ffffff" : "#000000";
   // ─────────────────────────────────────────────────────────────────────────
 
   const [rating, setRating] = useState(0);
@@ -387,13 +387,21 @@ export function FeedbackContactSection() {
                 </p>
 
                 {/* Optional comment textarea */}
+                {/* Scoped ::placeholder colour — can't be set via inline style */}
+                <style>{`
+                  #rating-comment::placeholder {
+                    color: ${isLight ? "rgba(0,0,0,0.35)" : "rgba(248,247,249,0.45)"};
+                  }
+                `}</style>
+
                 <div
                   className="text-left"
                   style={{ width: "min(400px, 100%)", margin: "0 auto" }}
                 >
                   <label
                     htmlFor="rating-comment"
-                    className="flex items-center gap-2 font-['Poppins:Medium',_sans-serif] text-[#f8f7f9]/50 text-[12px] uppercase tracking-widest mb-2"
+                    className="flex items-center gap-2 font-['Poppins:Medium',_sans-serif] text-[12px] uppercase tracking-widest mb-2"
+                    style={{ color: isLight ? "rgba(0,0,0,0.45)" : "rgba(248,247,249,0.55)" }}
                   >
                     <MessageSquare size={13} />
                     Leave a comment (optional)
@@ -404,7 +412,14 @@ export function FeedbackContactSection() {
                     value={ratingComment}
                     onChange={(e) => setRatingComment(e.target.value)}
                     placeholder="Tell me what you loved or what I can improve…"
-                    className="w-full bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-lg px-4 py-3 text-[#f8f7f9] placeholder-[#f8f7f9]/25 focus:outline-none focus:border-[#FFDD00]/40 transition-colors resize-none text-[14px]"
+                    className="w-full rounded-lg px-4 py-3 focus:outline-none resize-none text-[14px] transition-colors"
+                    style={{
+                      background: isLight ? "rgba(0,0,0,0.04)" : "rgba(248,247,249,0.06)",
+                      border: isLight ? "1px solid rgba(0,0,0,0.15)" : "1px solid rgba(248,247,249,0.15)",
+                      color: isLight ? "#1f1f1f" : "#f8f7f9",
+                    }}
+                    onFocus={(e) => (e.currentTarget.style.border = "1px solid rgba(255,221,0,0.5)")}
+                    onBlur={(e) => (e.currentTarget.style.border = isLight ? "1px solid rgba(0,0,0,0.15)" : "1px solid rgba(248,247,249,0.15)")}
                   />
                 </div>
 
@@ -414,7 +429,11 @@ export function FeedbackContactSection() {
                   id="submit-rating-btn"
                   onClick={handleRatingSubmit}
                   disabled={isRatingSending}
-                  className="flex items-center gap-2 px-8 py-3 rounded-lg bg-[#FFDD00] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif] text-[14px] hover:bg-[#FFE833] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-8 py-3 rounded-lg font-['Poppins:Bold',_sans-serif] text-[14px] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  style={{
+                    background: isLight ? "#111111" : "#ffffff",
+                    color:      isLight ? "#ffffff" : "#111111",
+                  }}
                 >
                   {isRatingSending ? (
                     <>
