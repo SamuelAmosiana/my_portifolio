@@ -1,22 +1,61 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Star, Send, Mail, Phone, MapPin, CheckCircle, XCircle, X, Loader2 } from "lucide-react";
+import { Star, Send, Mail, Phone, MapPin, CheckCircle, XCircle, X, Loader2, MessageSquare } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useTheme } from "../context/ThemeContext";
 
 // ─── EmailJS configuration ───────────────────────────────────────────────────
-// Replace the three placeholders below with your own EmailJS values.
-// Sign up free at https://www.emailjs.com and follow the setup guide in the
-// README or the comment block further down in this file.
-const EMAILJS_SERVICE_ID  = "service_gd40jl9";
+// EMAILJS_TEMPLATE_ID       → used for the "Send me a Message" contact form
+// EMAILJS_RATING_TEMPLATE_ID → used for the "Rate my Portfolio" widget
+//
+// Create a second EmailJS template for ratings with these variables:
+//   {{rating}}        — e.g. "4 / 5 ⭐"
+//   {{stars_label}}   — e.g. "★★★★☆"
+//   {{comment}}       — optional comment left by the visitor
+//   {{to_name}}       — your name
+//   {{to_email}}      — your email
+//
+// Sign up free at https://www.emailjs.com
+const EMAILJS_SERVICE_ID = "service_gd40jl9";
 const EMAILJS_TEMPLATE_ID = "template_zncdkwo";
-const EMAILJS_PUBLIC_KEY  = "7aO1AwWGhVN5_VGo_";
+const EMAILJS_RATING_TEMPLATE_ID = "template_zncdkwo"; // ← replace with your rating template ID
+const EMAILJS_PUBLIC_KEY = "7aO1AwWGhVN5_VGo_";
 // ─────────────────────────────────────────────────────────────────────────────
 
 type ModalState = "success" | "error" | null;
 
+// Helper: turn a numeric rating into a star-emoji label
+function starsLabel(n: number) {
+  return "★".repeat(n) + "☆".repeat(5 - n);
+}
+
+function ratingText(n: number) {
+  if (n === 5) return "Excellent";
+  if (n === 4) return "Great";
+  if (n === 3) return "Good";
+  if (n === 2) return "Fair";
+  return "Poor";
+}
+
 export function FeedbackContactSection() {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+
+  // ── Theme-aware modal tokens ──────────────────────────────────────────────
+  const modalBg        = isLight ? "#111111" : "#ffffff";
+  const modalText      = isLight ? "#ffffff" : "#111111";
+  const modalSubText   = isLight ? "rgba(255,255,255,0.72)" : "rgba(0,0,0,0.65)";
+  const modalBorder    = isLight ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.10)";
+  const modalClose     = isLight ? "rgba(255,255,255,0.55)" : "rgba(0,0,0,0.45)";
+  const modalCloseHov  = isLight ? "#ffffff" : "#000000";
+  // ─────────────────────────────────────────────────────────────────────────
+
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
+  const [ratingComment, setRatingComment] = useState("");
+  const [isRatingSending, setIsRatingSending] = useState(false);
+  const [ratingModal, setRatingModal] = useState<ModalState>(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,18 +65,55 @@ export function FeedbackContactSection() {
   const [isSending, setIsSending] = useState(false);
   const [modal, setModal] = useState<ModalState>(null);
 
+  // ── Submit star rating via EmailJS ────────────────────────────────────────
+  const handleRatingSubmit = async () => {
+    if (rating === 0) return;
+    setIsRatingSending(true);
+
+    const templateParams = {
+      rating: `${rating} / 5 ⭐ — ${ratingText(rating)}`,
+      stars_label: starsLabel(rating),
+      comment: ratingComment.trim() || "(no comment left)",
+      to_name: "Samuel",
+      to_email: "sianamatesamuel@gmail.com",
+      // Keep contact-form fields empty so the template doesn't break
+      from_name: "Portfolio Visitor",
+      from_email: "no-reply@portfolio",
+      reply_to: "no-reply@portfolio",
+      subject: `[Portfolio Rating] ${rating}/5 stars — ${ratingText(rating)}`,
+      message: ratingComment.trim() || "(no comment left)",
+    };
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_RATING_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+      setRating(0);
+      setRatingComment("");
+      setRatingModal("success");
+    } catch (err: any) {
+      console.error("EmailJS rating error:", err);
+      setRatingModal("error");
+    } finally {
+      setIsRatingSending(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSending(true);
 
     const templateParams = {
-      from_name:    formData.name,
-      from_email:   formData.email,
-      reply_to:     formData.email,
-      subject:      `[Portfolio Contact] ${formData.subject} — from ${formData.name}`,
-      message:      formData.message,
-      to_name:      "Samuel",
-      to_email:     "sianamatesamuel@gmail.com",
+      from_name: formData.name,
+      from_email: formData.email,
+      reply_to: formData.email,
+      subject: `[Portfolio Contact] ${formData.subject} — from ${formData.name}`,
+      message: formData.message,
+      to_name: "Samuel",
+      to_email: "sianamatesamuel@gmail.com",
     };
 
     try {
@@ -266,6 +342,8 @@ export function FeedbackContactSection() {
           <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/50 mb-8 max-w-md mx-auto">
             Your feedback helps me improve. How would you rate your experience with my portfolio?
           </p>
+
+          {/* Star buttons */}
           <div className="flex gap-3 justify-center">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -274,31 +352,85 @@ export function FeedbackContactSection() {
                 onClick={() => setRating(star)}
                 onMouseEnter={() => setHoverRating(star)}
                 onMouseLeave={() => setHoverRating(0)}
-                className="focus:outline-none transition-transform hover:scale-110"
+                className="focus:outline-none transition-transform hover:scale-110 active:scale-95"
+                aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
               >
                 <Star
                   size={44}
                   className={`${star <= (hoverRating || rating)
-                      ? "fill-[#FFDD00] text-[#FFDD00]"
-                      : "text-[#f8f7f9]/20"
-                    } transition-colors duration-200`}
+                    ? "fill-[#FFDD00] text-[#FFDD00] drop-shadow-[0_0_8px_rgba(255,221,0,0.6)]"
+                    : "text-[#f8f7f9]/20"
+                    } transition-all duration-200`}
                 />
               </button>
             ))}
           </div>
-          {rating > 0 && (
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-5 font-['Poppins:Medium',_sans-serif] text-[#f8f7f9]/60 text-[15px]"
-            >
-              {rating === 5
-                ? "🎉 Amazing! Thank you so much!"
-                : rating >= 3
-                  ? "😊 Thanks for your feedback!"
-                  : "😔 I appreciate your honesty, I'll keep improving!"}
-            </motion.p>
-          )}
+
+          {/* Animate-in: emoji label + comment box + submit */}
+          <AnimatePresence>
+            {rating > 0 && (
+              <motion.div
+                key="rating-form"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.35 }}
+                className="mt-6 flex flex-col gap-4 items-center w-full"
+              >
+                {/* Emoji label */}
+                <p className="font-['Poppins:Medium',_sans-serif] text-[#f8f7f9]/70 text-[15px]">
+                  {rating === 5
+                    ? "🎉 Amazing! Thank you so much!"
+                    : rating >= 3
+                      ? "😊 Thanks for your feedback!"
+                      : "😔 I appreciate your honesty, I'll keep improving!"}
+                </p>
+
+                {/* Optional comment textarea */}
+                <div
+                  className="text-left"
+                  style={{ width: "min(400px, 100%)", margin: "0 auto" }}
+                >
+                  <label
+                    htmlFor="rating-comment"
+                    className="flex items-center gap-2 font-['Poppins:Medium',_sans-serif] text-[#f8f7f9]/50 text-[12px] uppercase tracking-widest mb-2"
+                  >
+                    <MessageSquare size={13} />
+                    Leave a comment (optional)
+                  </label>
+                  <textarea
+                    id="rating-comment"
+                    rows={3}
+                    value={ratingComment}
+                    onChange={(e) => setRatingComment(e.target.value)}
+                    placeholder="Tell me what you loved or what I can improve…"
+                    className="w-full bg-[#f8f7f9]/5 border border-[#f8f7f9]/10 rounded-lg px-4 py-3 text-[#f8f7f9] placeholder-[#f8f7f9]/25 focus:outline-none focus:border-[#FFDD00]/40 transition-colors resize-none text-[14px]"
+                  />
+                </div>
+
+                {/* Submit button */}
+                <button
+                  type="button"
+                  id="submit-rating-btn"
+                  onClick={handleRatingSubmit}
+                  disabled={isRatingSending}
+                  className="flex items-center gap-2 px-8 py-3 rounded-lg bg-[#FFDD00] text-[#1f1f1f] font-['Poppins:Bold',_sans-serif] text-[14px] hover:bg-[#FFE833] active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {isRatingSending ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      <Send size={16} />
+                      Submit Rating
+                    </>
+                  )}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
 
@@ -323,19 +455,15 @@ export function FeedbackContactSection() {
               transition={{ type: "spring", stiffness: 280, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-md rounded-2xl p-10 text-center shadow-2xl"
-              style={{
-                background: modal === "success"
-                  ? "linear-gradient(135deg, #0d2f23 0%, #113326 100%)"
-                  : "linear-gradient(135deg, #2f0d0d 0%, #331111 100%)",
-                border: modal === "success"
-                  ? "1px solid rgba(52,211,153,0.25)"
-                  : "1px solid rgba(239,68,68,0.25)",
-              }}
+              style={{ background: modalBg, border: modalBorder }}
             >
               {/* Close button */}
               <button
                 onClick={() => setModal(null)}
-                className="absolute top-4 right-4 text-white/40 hover:text-white/80 transition-colors"
+                style={{ color: modalClose }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = modalCloseHov)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = modalClose)}
+                className="absolute top-4 right-4 transition-colors"
                 aria-label="Close"
               >
                 <X size={20} />
@@ -364,13 +492,17 @@ export function FeedbackContactSection() {
 
               {/* Heading */}
               <h3
-                className="font-['Poppins:Bold',_sans-serif] text-[26px] text-[#f8f7f9] mb-3"
+                className="font-['Poppins:Bold',_sans-serif] text-[26px] mb-3"
+                style={{ color: modalText }}
               >
                 {modal === "success" ? "Message Sent! 🎉" : "Delivery Failed"}
               </h3>
 
               {/* Body */}
-              <p className="font-['Poppins:Regular',_sans-serif] text-[#f8f7f9]/60 text-[15px] leading-relaxed">
+              <p
+                className="font-['Poppins:Regular',_sans-serif] text-[15px] leading-relaxed"
+                style={{ color: modalSubText }}
+              >
                 {modal === "success"
                   ? "Thank you for getting in touch! I've received your message and will get back to you within 48 hours."
                   : "Sorry, something went wrong and your message couldn't be delivered. Please try again or reach me directly at sianamatesamuel@gmail.com."}
@@ -379,13 +511,103 @@ export function FeedbackContactSection() {
               {/* Action button */}
               <button
                 onClick={() => setModal(null)}
-                className="mt-8 px-8 py-3 rounded-lg font-['Poppins:Bold',_sans-serif] text-[14px] transition-colors"
+                className="mt-8 px-8 py-3 rounded-lg font-['Poppins:Bold',_sans-serif] text-[14px] transition-all hover:opacity-90 active:scale-95"
                 style={{
                   background: modal === "success" ? "#34D399" : "#EF4444",
                   color: "#0d1f1a",
                 }}
               >
                 {modal === "success" ? "Awesome, thanks!" : "Got it"}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Rating submission modal ── */}
+      <AnimatePresence>
+        {ratingModal && (
+          <motion.div
+            key="rating-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            style={{ backgroundColor: "rgba(10,10,10,0.75)", backdropFilter: "blur(6px)" }}
+            onClick={() => setRatingModal(null)}
+          >
+            <motion.div
+              key="rating-modal-card"
+              initial={{ opacity: 0, scale: 0.85, y: 32 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.85, y: 32 }}
+              transition={{ type: "spring", stiffness: 280, damping: 24 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-2xl p-10 text-center shadow-2xl"
+              style={{ background: modalBg, border: modalBorder }}
+            >
+              {/* Close */}
+              <button
+                onClick={() => setRatingModal(null)}
+                style={{ color: modalClose }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = modalCloseHov)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = modalClose)}
+                className="absolute top-4 right-4 transition-colors"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Icon */}
+              <div className="flex justify-center mb-5">
+                {ratingModal === "success" ? (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
+                  >
+                    <CheckCircle size={64} className="text-[#34D399]" strokeWidth={1.5} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
+                  >
+                    <XCircle size={64} className="text-[#EF4444]" strokeWidth={1.5} />
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Heading */}
+              <h3
+                className="font-['Poppins:Bold',_sans-serif] text-[26px] mb-3"
+                style={{ color: modalText }}
+              >
+                {ratingModal === "success" ? "Rating Received! 🌟" : "Submission Failed"}
+              </h3>
+
+              {/* Body */}
+              <p
+                className="font-['Poppins:Regular',_sans-serif] text-[15px] leading-relaxed"
+                style={{ color: modalSubText }}
+              >
+                {ratingModal === "success"
+                  ? "Thank you for rating my portfolio! Your feedback means a lot and helps me grow as a developer."
+                  : "Sorry, something went wrong while sending your rating. Please try again or reach me at sianamatesamuel@gmail.com."}
+              </p>
+
+              {/* Action */}
+              <button
+                onClick={() => setRatingModal(null)}
+                className="mt-8 px-8 py-3 rounded-lg font-['Poppins:Bold',_sans-serif] text-[14px] transition-all hover:opacity-90 active:scale-95"
+                style={{
+                  background: ratingModal === "success" ? "#FFDD00" : "#EF4444",
+                  color: ratingModal === "success" ? "#1a1400" : "#fff",
+                }}
+              >
+                {ratingModal === "success" ? "You're welcome! 🙏" : "Got it"}
               </button>
             </motion.div>
           </motion.div>
