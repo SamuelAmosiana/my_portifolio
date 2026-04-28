@@ -71,17 +71,16 @@ export function FeedbackContactSection() {
     setIsRatingSending(true);
 
     const templateParams = {
-      rating: `${rating} / 5 ⭐ — ${ratingText(rating)}`,
+      rating:      `${rating} out of 5 (${ratingText(rating)})`,
       stars_label: starsLabel(rating),
-      comment: ratingComment.trim() || "(no comment left)",
-      to_name: "Samuel",
-      to_email: "sianamatesamuel@gmail.com",
-      // Keep contact-form fields empty so the template doesn't break
-      from_name: "Portfolio Visitor",
-      from_email: "no-reply@portfolio",
-      reply_to: "no-reply@portfolio",
-      subject: `[Portfolio Rating] ${rating}/5 stars — ${ratingText(rating)}`,
-      message: ratingComment.trim() || "(no comment left)",
+      comment:     ratingComment.trim() || "(no comment left)",
+      to_name:     "Samuel",
+      to_email:    "sianamatesamuel@gmail.com",
+      from_name:   "Portfolio Visitor",
+      from_email:  "sianamatesamuel@gmail.com",
+      reply_to:    "sianamatesamuel@gmail.com",
+      subject:     `[Portfolio Rating] ${rating} out of 5 - ${ratingText(rating)}`,
+      message:     ratingComment.trim() || "(no comment left)",
     };
 
     try {
