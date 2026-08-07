@@ -1,15 +1,15 @@
 import { motion } from "motion/react";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Github } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const featuredProjects = [
   {
-    title: "NutriZed",
+    title: "Ubumi",
     period: "2025",
     description:
-      "A smart, locally-grounded nutrition platform built specifically for Zambia and similar African communities — bridging the gap between modern health technology and everyday food realities on the ground.",
+      "Ubumi (Healthy Living Starts Here.) is a smart, locally-grounded nutrition platform built specifically for Zambia and similar African communities — bridging the gap between modern health technology and everyday food realities on the ground.",
     tech: ["PHP", "HTML", "CSS", "JavaScript"],
-    links: { github: "", demo: "https://samuelamosiana.github.io/nutri_zed/nutrized_web.html" },
+    links: { github: "https://github.com/SamuelAmosiana/nutri_zed", demo: "" },
   },
   {
     title: "Lusaka South University College Website",
@@ -71,6 +71,17 @@ export function FeaturedProjects() {
               </div>
 
               <div className="flex gap-4">
+                {project.links.github && (
+                  <a
+                    href={project.links.github}
+                    className="flex items-center gap-2 text-[#f8f7f9] hover:text-[#FFDD00] transition-colors"
+                  >
+                    <Github size={20} />
+                    <span className="text-sm font-['Poppins:Medium',_sans-serif]">
+                      View Code
+                    </span>
+                  </a>
+                )}
                 {project.links.demo && (
                   <a
                     href={project.links.demo}
