@@ -2090,3 +2090,13 @@ html {
 [data-theme='light'] .bg-[#f8f7f9]/10 { background-color: rgba(26, 26, 26, 0.08) !important; }
 [data-theme='light'] .border-[#f8f7f9]/10 { border-color: rgba(26, 26, 26, 0.1) !important; }
 [data-theme='light'] .border-[#f8f7f9]/20 { border-color: rgba(26, 26, 26, 0.15) !important; }
+
+/* -- Mobile bottom tab bar padding -- */
+@media (max-width: 1023px) {
+  main {
+    padding-bottom: 80px;
+  }
+}
+
+.bottom-0 { bottom: 0px !important; }
+

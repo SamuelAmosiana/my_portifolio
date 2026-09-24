@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Github, Linkedin, Facebook, Sun, Moon } from 'lucide-react';
+import { Github, Linkedin, Facebook, Sun, Moon, Home, User, FolderOpen, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -18,10 +18,10 @@ export function Navigation() {
   const { theme, toggleTheme } = useTheme();
 
   const navItems = [
-    { label: 'Home',     path: '/'         },
-    { label: 'About',    path: '/about'    },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Contact',  path: '/contact'  },
+    { label: 'Home',     path: '/',         icon: Home      },
+    { label: 'About',    path: '/about',    icon: User      },
+    { label: 'Projects', path: '/projects', icon: FolderOpen },
+    { label: 'Contact',  path: '/contact',  icon: Mail      },
   ];
 
   useEffect(() => {
@@ -57,7 +57,8 @@ export function Navigation() {
             {/* Logo/Name */}
             <Link
               to="/"
-              className="font-['Poppins:Bold',_sans-serif] text-[24px] text-[#f8f7f9] hover:opacity-80 transition-opacity"
+              style={{ color: theme === 'dark' ? '#f8f7f9' : '#1a1a1a' }}
+              className="font-['Poppins:Bold',_sans-serif] text-[24px] hover:opacity-80 transition-opacity"
             >
               Ndine_Coder<span className="text-[#FFDD00]">.</span>
             </Link>
@@ -130,9 +131,9 @@ export function Navigation() {
               </div>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button — hidden on mobile since bottom tab bar handles nav there */}
             <button
-              className="lg:hidden text-[#f8f7f9]"
+              className="hidden md:block lg:hidden text-[#f8f7f9]"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
@@ -150,14 +151,14 @@ export function Navigation() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop — semi-transparent, blurred, clicks to close */}
+            {/* Backdrop */}
             <motion.div
               key="drawer-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-40 lg:hidden"
+              className="fixed inset-0 z-40 hidden md:block lg:hidden"
               style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(3px)' }}
               onClick={() => setIsMobileMenuOpen(false)}
               aria-hidden="true"
@@ -290,6 +291,112 @@ export function Navigation() {
           </>
         )}
       </AnimatePresence>
+
+      {/* ── Mobile Bottom Tab Bar (WhatsApp-style) ─────────────────────── */}
+      <nav
+        className="lg:hidden z-50"
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          top: 'auto',
+          left: 0,
+          right: 0,
+          background: theme === 'dark'
+            ? 'rgba(31, 31, 31, 0.97)'
+            : 'rgba(255, 255, 255, 0.97)',
+          backdropFilter: 'blur(16px)',
+          borderTop: theme === 'dark'
+            ? '1px solid rgba(248,247,249,0.08)'
+            : '1px solid rgba(26,26,26,0.08)',
+          paddingBottom: 'env(safe-area-inset-bottom, 4px)',
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'flex-end', height: '72px', paddingBottom: '10px' }}>
+          {navItems.map((item) => {
+            const active = isActive(item.path);
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                style={{ flex: 1 }}
+                className="flex flex-col items-center justify-end gap-1 transition-colors duration-200"
+                aria-label={item.label}
+              >
+                <div className="relative flex items-center justify-center">
+                  <Icon
+                    size={22}
+                    strokeWidth={active ? 2.5 : 1.8}
+                    style={{ color: active ? '#FFDD00' : theme === 'dark' ? 'rgba(248,247,249,0.5)' : 'rgba(26,26,26,0.45)' }}
+                  />
+                  {active && (
+                    <motion.div
+                      layoutId="bottomTabDot"
+                      className="absolute -bottom-1.5 w-1 h-1 rounded-full bg-[#FFDD00]"
+                    />
+                  )}
+                </div>
+                <span
+                  style={{
+                    fontSize: '10px',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: active ? 700 : 500,
+                    color: active ? '#FFDD00' : theme === 'dark' ? 'rgba(248,247,249,0.45)' : 'rgba(26,26,26,0.45)',
+                    lineHeight: '1',
+                  }}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
+
+          {/* Theme Toggle Tab */}
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{ flex: 1 }}
+            className="flex flex-col items-center justify-end gap-1 transition-colors duration-200"
+          >
+            <div className="relative flex items-center justify-center">
+              <AnimatePresence mode="wait" initial={false}>
+                {theme === 'dark' ? (
+                  <motion.span
+                    key="sun-tab"
+                    initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun size={22} strokeWidth={1.8} className="text-[#FFDD00]" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="moon-tab"
+                    initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon size={22} strokeWidth={1.8} className="text-[#6366f1]" />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
+            <span
+              style={{
+                fontSize: '10px',
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 500,
+                color: theme === 'dark' ? 'rgba(248,247,249,0.45)' : 'rgba(26,26,26,0.45)',
+                lineHeight: '1',
+              }}
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </span>
+          </button>
+        </div>
+      </nav>
     </>
   );
 }
