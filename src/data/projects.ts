@@ -2,6 +2,7 @@ import srmsImage from "../assets/Student Records Management System.png";
 import sizaImage from "../assets/siza.png";
 import smartAttendanceImage from "../assets/smart_attendance.png";
 import lscImage from "../assets/Lusaka South University College Website.png";
+import ubumiImage from "../assets/ubumi.png";
 
 export interface Project {
   id: string;
@@ -117,5 +118,29 @@ export const projects: Project[] = [
     links: { github: "", demo: "https://lsc.edu.zm" },
     image: lscImage,
     gallery: [lscImage],
+  },
+  {
+    id: "ubumi",
+    title: "Ubumi",
+    period: "2025",
+    description:
+      "Ubumi (Healthy Living Starts Here.) is a smart, locally-grounded nutrition platform built specifically for Zambia and similar African communities — bridging the gap between modern health technology and everyday food realities on the ground.",
+    longDescription:
+      "Ubumi is a free, personalized nutrition platform designed to provide accessible health guidance using local, affordable Zambian foods. It features an instant BMI calculator, tailored daily meal plans with precise gram quantities, a comprehensive Zambian food database with nutritional breakdowns for 32+ local superfoods, and customized exercise recommendations without requiring any user registration.",
+    tech: ["TypeScript", "Next.js", "React", "Tailwind CSS"],
+    features: [
+      "BMI calculator for body mass index and daily calorie targets",
+      "Personalized daily meal plans using local Zambian foods",
+      "Food database with nutritional breakdowns for 32+ local foods",
+      "Exercise and activity guidance tailored to user fitness goals",
+      "No sign-up required for instant assessment and access",
+      "Lightweight and responsive interface optimized for low bandwidth",
+    ],
+    links: {
+      github: "https://github.com/SamuelAmosiana/nutri_zed",
+      demo: "https://ubumi.vercel.app/",
+    },
+    image: ubumiImage,
+    gallery: [ubumiImage],
   },
 ];

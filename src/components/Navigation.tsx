@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Github, Linkedin, Facebook, Sun, Moon, Home, User, FolderOpen, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
+import mainLogo from '../assets/main_logo.jpeg';
+import simplifiedLogo from '../assets/simplified_logo.jpeg';
 
 // Official X (formerly Twitter) logo as SVG
 const XIcon = ({ size = 24 }: { size?: number }) => (
@@ -57,10 +59,26 @@ export function Navigation() {
             {/* Logo/Name */}
             <Link
               to="/"
-              style={{ color: theme === 'dark' ? '#f8f7f9' : '#1a1a1a' }}
-              className="font-['Poppins:Bold',_sans-serif] text-[24px] hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
             >
-              Ndine_Coder<span className="text-[#FFDD00]">.</span>
+              <img
+                src={simplifiedLogo}
+                alt="Logo"
+                style={{
+                  height: '28px',
+                  width: '28px',
+                  objectFit: 'contain',
+                  mixBlendMode: theme === 'light' ? 'multiply' : 'screen',
+                  filter: theme === 'dark' ? 'brightness(1.2)' : 'none',
+                }}
+                className="flex-shrink-0"
+              />
+              <span
+                style={{ color: theme === 'dark' ? '#f8f7f9' : '#1a1a1a' }}
+                className="font-['Poppins:Bold',_sans-serif] text-[18px] md:text-[20px]"
+              >
+                Ndine_Coder<span className="text-[#FFDD00]">.</span>
+              </span>
             </Link>
 
             {/* Desktop Navigation */}

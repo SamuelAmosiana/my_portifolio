@@ -8,8 +8,8 @@ const featuredProjects = [
     period: "2025",
     description:
       "Ubumi (Healthy Living Starts Here.) is a smart, locally-grounded nutrition platform built specifically for Zambia and similar African communities — bridging the gap between modern health technology and everyday food realities on the ground.",
-    tech: ["PHP", "HTML", "CSS", "JavaScript"],
-    links: { github: "https://github.com/SamuelAmosiana/nutri_zed", demo: "" },
+    tech: ["TypeScript", "Next.js", "React", "Tailwind CSS"],
+    links: { github: "https://github.com/SamuelAmosiana/nutri_zed", demo: "https://ubumi.vercel.app/" },
   },
   {
     title: "Lusaka South University College Website",
