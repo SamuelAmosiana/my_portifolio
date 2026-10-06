@@ -2,7 +2,7 @@ import srmsImage from "../assets/Student Records Management System.png";
 import sizaImage from "../assets/siza.png";
 import smartAttendanceImage from "../assets/smart_attendance.png";
 import lscImage from "../assets/Lusaka South University College Website.png";
-import ubumiImage from "../assets/ubumi.png";
+import ubumiImage from "../assets/ubumi_img.jpeg";
 
 export interface Project {
   id: string;
