@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import { Navigation } from "./components/Navigation";
+import { Seo } from "./components/Seo";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Projects } from "./pages/Projects";
@@ -12,6 +13,7 @@ function AppShell() {
   const { theme } = useTheme();
   return (
     <div className={`portfolio-root min-h-screen overflow-x-hidden selection:bg-[#FFDD00] selection:text-black`}>
+      <Seo />
       <Toaster position="bottom-right" theme={theme} />
       <Navigation />
       <main className="pt-0">

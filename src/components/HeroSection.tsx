@@ -71,7 +71,7 @@ export function HeroSection() {
               style={{ color: t.fg }}
               className="font-['Poppins:Bold',_sans-serif] text-[48px] md:text-[56px]"
             >
-              Hi, I'm Samuel
+              Hi, I'm Samuel Sianamate
             </h1>
             <h2 
               style={{ color: t.fg }}

@@ -4,12 +4,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/jpeg" href="/src/assets/simplified_logo.jpeg" />
-    <title>Samuel Sianamate | Portfolio</title>
+    <link rel="icon" type="image/jpeg" href="/favicon.jpeg" />
+    <title>Samuel Sianamate | Systems Developer &amp; DevOps Engineer in Zambia</title>
+    <meta name="description" content="Samuel Sianamate is a Systems Developer, DevOps Engineer and Technical Mentor in Zambia. Explore projects, experience, certifications and contact details." />
+    <meta name="author" content="Samuel Sianamate" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Samuel Sianamate" />
+    <meta property="og:title" content="Samuel Sianamate | Systems Developer &amp; DevOps Engineer" />
+    <meta property="og:description" content="Systems Developer, DevOps Engineer and Technical Mentor in Zambia. Engineering scalable systems and delivering reliable solutions with modern technologies." />
+    <meta property="og:image" content="https://www.samuelsianamate.com/samuel-sianamate.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Samuel Sianamate" />
+    <meta property="profile:first_name" content="Samuel" />
+    <meta property="profile:last_name" content="Sianamate" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@AmCodeSmith" />
+    <meta name="twitter:title" content="Samuel Sianamate | Systems Developer &amp; DevOps Engineer" />
+    <meta name="twitter:description" content="Systems Developer, DevOps Engineer and Technical Mentor in Zambia. Engineering scalable systems and delivering reliable solutions with modern technologies." />
+    <meta name="twitter:image" content="https://www.samuelsianamate.com/samuel-sianamate.jpg" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.samuelsianamate.com/#website",
+            "url": "https://www.samuelsianamate.com/",
+            "name": "Samuel Sianamate",
+            "publisher": { "@id": "https://www.samuelsianamate.com/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.samuelsianamate.com/#person",
+            "name": "Samuel Sianamate",
+            "url": "https://www.samuelsianamate.com/",
+            "image": "https://www.samuelsianamate.com/samuel-sianamate.jpg",
+            "jobTitle": "Systems Developer",
+            "description": "Systems Developer, DevOps Engineer and Technical Mentor in Zambia.",
+            "worksFor": {
+              "@type": "CollegeOrUniversity",
+              "name": "Lusaka South University College",
+              "url": "https://lsc.edu.zm"
+            },
+            "address": { "@type": "PostalAddress", "addressCountry": "ZM" },
+            "knowsAbout": ["Systems Development", "DevOps", "Web Development", "PHP", "Laravel", "Python", "TypeScript", "React", "MySQL"],
+            "sameAs": [
+              "https://github.com/SamuelAmosiana",
+              "https://x.com/AmCodeSmith",
+              "https://www.facebook.com/samuel.sianamate.75"
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <!-- React replaces this on load. It gives crawlers real content before JavaScript runs. -->
+    <div id="root">
+      <h1>Samuel Sianamate</h1>
+      <p>Systems Developer · DevOps Engineer · Technical Mentor</p>
+      <p>Engineering scalable systems and delivering reliable solutions with modern technologies.</p>
+      <nav>
+        <a href="/about">About Samuel Sianamate</a>
+        <a href="/projects">Projects</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
