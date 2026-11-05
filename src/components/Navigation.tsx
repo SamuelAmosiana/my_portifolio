@@ -144,7 +144,7 @@ export function Navigation() {
               <div className="flex gap-4">
                 <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" />
                 <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" />
-                <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" />
+                <SocialIcon Icon={Linkedin} href="https://www.linkedin.com/in/samuel-sianamate-b5b900257/" />
                 <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" />
               </div>
             </div>
@@ -299,7 +299,7 @@ export function Navigation() {
                     <div className="flex items-center gap-6">
                       <SocialIcon Icon={Github} href="https://github.com/SamuelAmosiana" size={24} />
                       <SocialIcon Icon={null} href="https://x.com/AmCodeSmith" size={24} />
-                      <SocialIcon Icon={Linkedin} href="https://linkedin.com/in/" size={24} />
+                      <SocialIcon Icon={Linkedin} href="https://www.linkedin.com/in/samuel-sianamate-b5b900257/" size={24} />
                       <SocialIcon Icon={Facebook} href="https://www.facebook.com/samuel.sianamate.75" size={24} />
                     </div>
                   </div>

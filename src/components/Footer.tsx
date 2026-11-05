@@ -11,7 +11,7 @@ const XIcon = ({ size = 24 }: { size?: number }) => (
 const socialLinks = [
   { icon: Github, href: "https://github.com/SamuelAmosiana", label: "GitHub" },
   { icon: null, href: "https://x.com/AmCodeSmith", label: "X" },
-  { icon: Linkedin, href: "https://linkedin.com/in/", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/samuel-sianamate-b5b900257/", label: "LinkedIn" },
   { icon: Facebook, href: "https://www.facebook.com/samuel.sianamate.75", label: "Facebook" },
 ];
 
