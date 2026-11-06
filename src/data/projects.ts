@@ -69,7 +69,7 @@ export const projects: Project[] = [
       "Search and filter by programme or institution type",
     ],
     note: "The repository for this project is private. Feel free to reach out if you'd like to learn more about the implementation!",
-    links: { github: "", demo: "https://siza-app.onrender.com/" },
+    links: { github: "", demo: "https://siza-uat.samuelsianamate.com/" },
     image: sizaImage,
     gallery: [sizaImage],
   },
