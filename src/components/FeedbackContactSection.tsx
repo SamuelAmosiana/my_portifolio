@@ -107,9 +107,13 @@ export function FeedbackContactSection() {
 
     const templateParams = {
       from_name: formData.name,
+      name: formData.name, // alias, in case the template uses {{name}}
       from_email: formData.email,
       reply_to: formData.email,
-      subject: `[Portfolio Contact] ${formData.subject} — from ${formData.name}`,
+      // Keep the subject identical to what the visitor typed so a reply reads
+      // as a normal conversation ("Re: <their subject>"). Bracketed tags and
+      // "— from <name>" make replies look automated and push them to spam.
+      subject: formData.subject,
       message: formData.message,
       to_name: "Samuel",
       to_email: "sianamatesamuel@gmail.com",
