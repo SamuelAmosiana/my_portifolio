@@ -18,7 +18,7 @@ import { useTheme } from "../context/ThemeContext";
 // Sign up free at https://www.emailjs.com
 const EMAILJS_SERVICE_ID = "service_gd40jl9";
 const EMAILJS_TEMPLATE_ID = "template_zncdkwo";
-const EMAILJS_RATING_TEMPLATE_ID = "template_zncdkwo"; // ← replace with your rating template ID
+const EMAILJS_RATING_TEMPLATE_ID = "template_vsaesif"; // email-templates/rating.html
 const EMAILJS_PUBLIC_KEY = "7aO1AwWGhVN5_VGo_";
 // ─────────────────────────────────────────────────────────────────────────────
 
