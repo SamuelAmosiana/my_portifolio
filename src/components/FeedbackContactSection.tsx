@@ -48,6 +48,8 @@ export function FeedbackContactSection() {
   const modalBorder = isLight ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(0,0,0,0.10)";
   const modalClose = isLight ? "rgba(255,255,255,0.55)" : "rgba(0,0,0,0.45)";
   const modalCloseHov = isLight ? "#ffffff" : "#000000";
+  // Inline because p-10 / max-w-md are missing from the precompiled index.css.
+  const modalCardLayout = { maxWidth: 448, padding: "48px 32px 36px" };
   // ─────────────────────────────────────────────────────────────────────────
 
   const [rating, setRating] = useState(0);
@@ -476,8 +478,8 @@ export function FeedbackContactSection() {
               exit={{ opacity: 0, scale: 0.85, y: 32 }}
               transition={{ type: "spring", stiffness: 280, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-md rounded-2xl p-10 text-center shadow-2xl"
-              style={{ background: modalBg, border: modalBorder }}
+              className="relative w-full rounded-2xl text-center shadow-2xl"
+              style={{ ...modalCardLayout, background: modalBg, border: modalBorder }}
             >
               {/* Close button */}
               <button
@@ -492,14 +494,14 @@ export function FeedbackContactSection() {
               </button>
 
               {/* Icon */}
-              <div className="flex justify-center mb-5">
+              <div className="flex justify-center" style={{ marginBottom: 20 }}>
                 {modal === "success" ? (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
                   >
-                    <CheckCircle size={64} className="text-[#34D399]" strokeWidth={1.5} />
+                    <CheckCircle size={64} color="#22C55E" strokeWidth={1.75} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -507,7 +509,7 @@ export function FeedbackContactSection() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
                   >
-                    <XCircle size={64} className="text-[#EF4444]" strokeWidth={1.5} />
+                    <XCircle size={64} color="#EF4444" strokeWidth={1.75} />
                   </motion.div>
                 )}
               </div>
@@ -566,8 +568,8 @@ export function FeedbackContactSection() {
               exit={{ opacity: 0, scale: 0.85, y: 32 }}
               transition={{ type: "spring", stiffness: 280, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-md rounded-2xl p-10 text-center shadow-2xl"
-              style={{ background: modalBg, border: modalBorder }}
+              className="relative w-full rounded-2xl text-center shadow-2xl"
+              style={{ ...modalCardLayout, background: modalBg, border: modalBorder }}
             >
               {/* Close */}
               <button
@@ -582,14 +584,14 @@ export function FeedbackContactSection() {
               </button>
 
               {/* Icon */}
-              <div className="flex justify-center mb-5">
+              <div className="flex justify-center" style={{ marginBottom: 20 }}>
                 {ratingModal === "success" ? (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
                   >
-                    <CheckCircle size={64} className="text-[#34D399]" strokeWidth={1.5} />
+                    <CheckCircle size={64} color="#22C55E" strokeWidth={1.75} />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -597,7 +599,7 @@ export function FeedbackContactSection() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 18, delay: 0.15 }}
                   >
-                    <XCircle size={64} className="text-[#EF4444]" strokeWidth={1.5} />
+                    <XCircle size={64} color="#EF4444" strokeWidth={1.75} />
                   </motion.div>
                 )}
               </div>
