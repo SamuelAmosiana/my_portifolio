@@ -2,6 +2,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
+const THEME_CHOICE_KEY = "portfolio-theme-choice";
+
 interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
@@ -13,13 +15,17 @@ const ThemeContext = createContext<ThemeContextValue>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // Light is the default. Only a theme the visitor explicitly picked with the
+  // toggle is remembered. The old "portfolio-theme" key is ignored on purpose:
+  // earlier versions auto-saved "dark" for every visitor, which kept returning
+  // visitors stuck in dark mode even though they never chose it.
   const [theme, setTheme] = useState<Theme>(() => {
-    // 1. Check localStorage — only honour an explicit user toggle
-    const stored = localStorage.getItem("portfolio-theme") as Theme | null;
-    // 2. If the user has never made a choice, boot into light mode
-    if (stored === "light" || stored === "dark") return stored;
-    // 3. Write the default so subsequent visits are consistent
-    localStorage.setItem("portfolio-theme", "light");
+    try {
+      const chosen = localStorage.getItem(THEME_CHOICE_KEY);
+      if (chosen === "light" || chosen === "dark") return chosen;
+    } catch {
+      // Storage blocked (private mode etc.): fall through to the default.
+    }
     return "light";
   });
 
@@ -31,11 +37,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } else {
       root.removeAttribute("data-theme");
     }
-    localStorage.setItem("portfolio-theme", theme);
   }, [theme]);
 
   const toggleTheme = () =>
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem(THEME_CHOICE_KEY, next);
+        localStorage.removeItem("portfolio-theme");
+      } catch {
+        // Ignore storage failures; the toggle still works for this visit.
+      }
+      return next;
+    });
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
